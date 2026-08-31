@@ -1,538 +1,263 @@
 :root {
-  --primary-color: #5E35B1; /* Premium Purple */
-  --primary-light: #9162E4;
-  --bg-color: #F8F9FA;
-  --text-color: #333333;
-  --correct-color: #4CAF50;
-  --incorrect-color: #F44336;
-  --border-radius: 8px; /* 全体で統一する角丸 */
+  /* スリコ風の柔らかいカラーパレット */
+  --primary-color: #5E35B1; /* ロゴの紫（アクセントとして引き締める用） */
+  --primary-soft: #F0EAF5; /* 非常に淡いラベンダー */
+  --bg-color: #FDFBF7; /* 温かみのあるアイボリー（背景） */
+  --surface-color: #FFFFFF; /* カードの白 */
+  --text-main: #5C544E; /* 真っ黒ではなく、温かいこげ茶/チャコール */
+  --text-light: #9A928D; /* 控えめなグレージュ */
+  
+  /* 正誤判定も目に優しいパステルカラーに */
+  --correct-color: #8EBA9D; /* セージグリーン */
+  --incorrect-color: #DDA7A5; /* ダスティピンク */
+  
+  --border-radius-card: 24px;
+  --border-radius-btn: 50px; /* コロンとしたピルシェイプ */
 }
 
-/* ==========================================
-   Base Reset & Typography
-========================================== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  display: flex;
-  flex-direction: column;
+  background-color: var(--bg-color); 
+  color: var(--text-main); 
+  display: flex; 
+  flex-direction: column; 
   min-height: 100vh;
 }
 
-.hidden {
-  display: none !important;
+/* ==========================================
+   Splash Screen (オープニングアニメーション)
+========================================== */
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg-color);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeOutSplash 0.8s ease-in-out 2s forwards; /* 2秒後にフェードアウト */
+  pointer-events: none;
 }
+
+.splash-logo {
+  max-width: 200px;
+  opacity: 0;
+  animation: floatUpFadeIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards;
+}
+
+.splash-text {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  opacity: 0;
+  animation: floatUpFadeIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards;
+}
+
+@keyframes floatUpFadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOutSplash {
+  0% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+.hidden { display: none !important; }
 
 /* ==========================================
-   Header
+   Header (重い背景色を無くし、軽やかに)
 ========================================== */
 header {
-  width: 100%;
-  background-color: var(--primary-color);
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 100%; 
+  background-color: transparent; 
+  color: var(--primary-color); 
+  padding: 15px 20px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
 }
-
-.header-logo {
-  height: 30px;
-  object-fit: contain;
-}
-
-#progress {
-  font-weight: bold;
-}
+.header-logo { height: 28px; object-fit: contain; }
+#progress { font-weight: bold; color: var(--text-light); }
 
 /* ==========================================
    Start & Level Select Screens
 ========================================== */
-#home-screen, #level-select-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-  text-align: center;
-  padding: 20px;
+#home-screen, #level-select-screen, #visual-list-screen {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 80vh; text-align: center; padding: 20px;
 }
-
-.main-logo {
-  max-width: 300px;
-  margin-bottom: 30px;
-}
-
-h2 {
-  color: var(--primary-color);
-  margin-bottom: 20px;
-}
+.main-logo { max-width: 250px; margin-bottom: 40px; }
+h2 { color: var(--text-main); margin-bottom: 25px; font-weight: 500; }
 
 #level-select-image {
-  width: 100%;
-  max-width: 500px;
-  max-height: 40vh;
-  object-fit: contain;
-  border-radius: var(--border-radius);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
+  width: 100%; max-width: 500px; max-height: 40vh; object-fit: contain;
+  border-radius: var(--border-radius-card); 
+  box-shadow: 0 10px 30px rgba(92, 84, 78, 0.05); margin-bottom: 25px;
 }
 
-.category-btn, .level-select-btn {
-  background-color: white;
-  border: 2px solid var(--primary-color);
+.category-btn, .level-select-btn, .action-btn {
+  background-color: var(--surface-color); 
+  border: 1px solid #EBE6E0; 
+  color: var(--text-main);
+  padding: 15px 35px; 
+  font-size: 1.1rem; 
+  border-radius: var(--border-radius-btn); 
+  cursor: pointer; 
+  transition: all 0.3s ease;
+  margin: 5px; 
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(92, 84, 78, 0.04);
+}
+.category-btn:hover, .level-select-btn:hover, .action-btn:hover { 
+  background-color: var(--primary-soft); 
+  border-color: var(--primary-soft);
   color: var(--primary-color);
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  transition: all 0.2s;
-  margin: 0 10px;
-  font-weight: bold;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(94, 53, 177, 0.1);
 }
 
-.category-btn:hover, .level-select-btn:hover {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.level-select-buttons {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+.level-select-buttons { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
 
 /* ==========================================
-   Main App Layout (2 Columns)
+   Visual List Screen
 ========================================== */
-main {
-  flex: 1;
-  width: 100%;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
+.visual-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; width: 100%; margin-top: 20px; max-width: 1000px;}
+.visual-card {
+  background: var(--surface-color); border-radius: var(--border-radius-card);
+  box-shadow: 0 8px 24px rgba(92, 84, 78, 0.05); overflow: hidden; cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s; border: 1px solid #F2EFEB;
 }
+.visual-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(92, 84, 78, 0.1); border-color: var(--primary-soft); }
+.visual-card img { width: 100%; height: 160px; object-fit: contain; background-color: #FAFAFA; border-bottom: 1px solid #F2EFEB; }
+.visual-card-info { padding: 15px; text-align: center; }
+.visual-card-title { font-weight: bold; color: var(--text-main); font-size: 1.05rem; }
 
-#app-container {
-  width: 100%;
-  max-width: 600px; /* 未解答時は1カラム中央配置 */
-  transition: max-width 0.3s ease;
-}
+/* ==========================================
+   Main App Layout
+========================================== */
+main { flex: 1; width: 100%; padding: 20px; display: flex; justify-content: center; }
+#app-container { width: 100%; max-width: 600px; transition: max-width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
 
 @media (min-width: 768px) {
-  #app-container.show-feedback {
-    max-width: 1200px;
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 左右50%ずつ */
-    gap: 40px;
-    align-items: flex-start;
-  }
-  .right-column {
-    position: sticky;
-    top: 20px; /* スクロール追従 */
-  }
+  #app-container.show-feedback { max-width: 1200px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: flex-start; }
+  .right-column { position: sticky; top: 20px; }
 }
 
-.left-column {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* ==========================================
-   Left Column: Visual, Audio, Answers
-========================================== */
+.left-column { display: flex; flex-direction: column; gap: 20px; }
 #visual-section img {
-  width: 100%;
-  max-height: 50vh;
-  object-fit: contain;
-  border-radius: var(--border-radius);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  background-color: #fff;
-}
-
-#audio-section {
-  display: flex;
-  justify-content: center;
-}
-
-audio {
-  width: 100%;
-  outline: none;
-}
-
-.button-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-}
-
-.choice-btn {
-  background-color: white;
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 15px;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.choice-btn:hover:not(:disabled) {
-  background-color: var(--primary-light);
-  color: white;
-}
-
-.choice-btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
+  width: 100%; max-height: 50vh; object-fit: contain;
+  border-radius: var(--border-radius-card); box-shadow: 0 10px 30px rgba(92, 84, 78, 0.05); background-color: var(--surface-color);
 }
 
 /* ==========================================
-   Right Column: Feedback & Explanation
+   Custom Audio Player
+========================================== */
+#audio-section { width: 100%; }
+.custom-audio-player {
+  display: flex; align-items: center; background: var(--surface-color);
+  border-radius: var(--border-radius-btn); padding: 12px 24px;
+  box-shadow: 0 6px 20px rgba(92, 84, 78, 0.05); border: 1px solid #F2EFEB; gap: 15px; width: 100%;
+}
+.play-pause-btn {
+  background: var(--primary-soft); color: var(--primary-color); border: none;
+  width: 44px; height: 44px; border-radius: 50%; font-size: 1.2rem; cursor: pointer;
+  display: flex; justify-content: center; align-items: center; transition: all 0.2s;
+}
+.play-pause-btn:hover { background: var(--primary-color); color: white; transform: scale(1.05); }
+.audio-progress-container { flex: 1; height: 6px; background: #EBE6E0; border-radius: 4px; cursor: pointer; position: relative; overflow: hidden; }
+.audio-progress-bar { height: 100%; background: var(--primary-color); width: 0%; border-radius: 4px; transition: width 0.1s linear; }
+.audio-time-display { font-size: 0.85rem; color: var(--text-light); min-width: 80px; text-align: right; }
+
+/* ==========================================
+   Choice Buttons
+========================================== */
+.button-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.choice-btn {
+  background-color: var(--surface-color); border: 2px solid transparent; color: var(--text-main);
+  font-size: 1.3rem; font-weight: 500; padding: 20px; border-radius: var(--border-radius-card); 
+  cursor: pointer; transition: all 0.3s; box-shadow: 0 6px 16px rgba(92, 84, 78, 0.04);
+}
+.choice-btn:hover:not(:disabled) { box-shadow: 0 10px 24px rgba(94, 53, 177, 0.1); color: var(--primary-color); }
+.choice-btn:disabled { opacity: 0.8; cursor: not-allowed; box-shadow: none; }
+
+/* ==========================================
+   Feedback Section
 ========================================== */
 #feedback-section {
-  background-color: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  background-color: var(--bg-color); /* 背景と馴染ませる */
+  display: flex; flex-direction: column; gap: 15px;
 }
-
-.feedback-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 10px;
-}
-
-.correct-answer-display {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--primary-color);
-}
-
-#correct-number {
-  font-size: 1.8rem;
-  background: var(--primary-color);
-  color: white;
-  padding: 5px 15px;
-  border-radius: 20px;
-  margin-left: 10px;
-}
+.feedback-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 5px; }
+#result-title { font-size: 1.8rem; font-weight: bold; margin: 0; }
+.correct-answer-display { font-size: 1rem; color: var(--text-light); }
+#correct-number { font-size: 1.5rem; background: var(--primary-color); color: white; padding: 4px 16px; border-radius: var(--border-radius-btn); margin-left: 8px; }
 
 .feedback-box {
-  background-color: #f8f9fa;
-  border-left: 4px solid var(--primary-color);
-  padding: 15px;
-  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  background-color: var(--surface-color); padding: 20px 24px;
+  border-radius: var(--border-radius-card); border: 1px solid #F2EFEB;
+  box-shadow: 0 4px 12px rgba(92, 84, 78, 0.03);
 }
-
-.feedback-box h4 {
-  margin-bottom: 8px;
-  color: var(--primary-color);
-  font-size: 1.1rem;
-}
+.feedback-box h4 { margin-bottom: 10px; color: var(--text-main); font-size: 1rem; font-weight: bold; }
+#script-text { font-size: 1.15rem; line-height: 1.6; color: var(--text-main); }
+.script-translation { font-size: 0.95rem; color: var(--text-light); margin-top: 12px; line-height: 1.6; }
 
 .toggle-btn {
-  background: none;
-  border: 1px solid #ccc;
-  color: #555;
-  padding: 10px;
-  width: 100%;
-  border-radius: var(--border-radius);
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s;
+  background: var(--surface-color); border: 1px solid #F2EFEB; color: var(--text-light); padding: 12px; width: 100%;
+  border-radius: var(--border-radius-btn); font-size: 0.95rem; cursor: pointer; transition: all 0.2s;
 }
+.toggle-btn:hover { background: var(--primary-soft); color: var(--primary-color); border-color: var(--primary-soft); }
 
-.toggle-btn:hover {
-  background: #eee;
-}
-
-#explanation-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.sub-feedback {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: #555;
-  border-top: 1px dashed #ccc;
-  padding-top: 10px;
-}
-
-#vocabulary-list {
-  margin-left: 20px;
-  line-height: 1.6;
-}
+#explanation-wrapper { display: flex; flex-direction: column; gap: 15px; }
+#explanation-text { line-height: 1.6; color: var(--text-main); }
+.sub-feedback { margin-top: 15px; font-size: 0.9rem; color: var(--text-light); border-top: 1px dashed #EBE6E0; padding-top: 15px; }
+#vocabulary-list { margin-left: 20px; line-height: 1.8; color: var(--text-main); }
 
 /* ==========================================
-   Right Column: Practice Tabs (Read/Shadow)
+   Practice Area (Tabs & Shadowing)
 ========================================== */
-.practice-box {
-  border-left-color: var(--primary-light);
-  padding: 0;
-  overflow: hidden;
-}
-
-.tab-header {
-  display: flex;
-  border-bottom: 2px solid #eee;
-}
-
+.practice-box { padding: 0; overflow: hidden; }
+.tab-header { display: flex; border-bottom: 1px solid #F2EFEB; background: #FCFAFA; }
 .tab-btn {
-  flex: 1;
-  padding: 15px;
-  border: none;
-  background: #f0f0f0;
-  color: #666;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s;
+  flex: 1; padding: 16px; border: none; background: transparent; color: var(--text-light);
+  font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.3s;
+}
+.tab-btn.active { background: var(--surface-color); color: var(--primary-color); font-weight: bold; border-bottom: 2px solid var(--primary-color); }
+.tab-content { padding: 24px; }
+
+.instruction { font-size: 0.9rem; color: var(--text-light); margin-bottom: 15px; text-align: center; }
+.practice-script { font-size: 1.2rem; line-height: 1.7; padding: 20px; background: #FAFAFA; border-radius: 16px; margin-bottom: 20px; color: var(--text-main); text-align: center; }
+.practice-script span { transition: color 0.2s; display: inline-block; margin-right: 4px; }
+.word-correct { color: var(--correct-color); font-weight: bold; }
+
+.practice-controls { display: flex; justify-content: center; gap: 10px; }
+.mic-btn { border-color: var(--primary-color); color: var(--primary-color); }
+.stop-btn { border-color: var(--incorrect-color); color: var(--incorrect-color); }
+.stop-btn:hover { background-color: var(--incorrect-color); color: white; }
+
+.recording { background-color: var(--incorrect-color); color: white; border-color: var(--incorrect-color); animation: pulseSoft 1.5s infinite; }
+@keyframes pulseSoft {
+  0% { box-shadow: 0 0 0 0 rgba(221, 167, 165, 0.6); }
+  70% { box-shadow: 0 0 0 12px rgba(221, 167, 165, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(221, 167, 165, 0); }
 }
 
-.tab-btn.active {
-  background: white;
-  color: var(--primary-color);
-  border-bottom: 3px solid var(--primary-color);
-}
+/* Gauge */
+#score-container { text-align: center; margin: 25px 0; }
+.gauge-wrapper { position: relative; width: 180px; margin: 0 auto; }
+.gauge { width: 100%; height: auto; transform: rotateY(180deg); }
+.gauge-bg { stroke: #F2EFEB; }
+.gauge-fill { stroke: var(--correct-color); transition: stroke-dashoffset 1.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.gauge-text { position: absolute; bottom: -5px; left: 0; right: 0; font-size: 2.2rem; font-weight: bold; color: var(--primary-color); }
 
-.tab-content {
-  padding: 20px;
-}
+.shadowing-display { background: #FAFAFA; padding: 20px; border-radius: 16px; margin-top: 20px; }
+.model-text { font-size: 1.05rem; color: var(--text-main); margin-bottom: 15px; border-bottom: 1px dashed #EBE6E0; padding-bottom: 15px;}
+.user-text { font-size: 1.05rem; color: var(--primary-color); min-height: 2em; }
 
-.instruction {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 15px;
-}
-
-.practice-script {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  padding: 15px;
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: var(--border-radius);
-  margin-bottom: 15px;
-}
-
-.practice-script span {
-  transition: color 0.2s;
-  display: inline-block;
-  margin-right: 4px;
-}
-
-.word-correct {
-  color: var(--correct-color);
-  font-weight: bold;
-}
-
-/* ==========================================
-   Action Buttons & Mic Pulse
-========================================== */
-.practice-controls {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.action-btn {
-  background-color: white;
-  color: var(--text-color);
-  border: 2px solid #ccc;
-  padding: 10px 20px;
-  border-radius: 30px;
-  font-size: 1rem;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.mic-btn {
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-}
-
-.mic-btn:hover {
-  background-color: var(--primary-light);
-  color: white;
-}
-
-.stop-btn {
-  border-color: var(--incorrect-color);
-  color: var(--incorrect-color);
-}
-
-.stop-btn:hover {
-  background-color: var(--incorrect-color);
-  color: white;
-}
-
-.recording {
-  background-color: var(--incorrect-color);
-  color: white;
-  border-color: var(--incorrect-color);
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7); }
-  70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(244, 67, 54, 0); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
-}
-
-/* ==========================================
-   Score Gauge Animation
-========================================== */
-#score-container {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.gauge-wrapper {
-  position: relative;
-  width: 200px;
-  margin: 0 auto;
-}
-
-.gauge {
-  width: 100%;
-  height: auto;
-  transform: rotateY(180deg);
-}
-
-.gauge-bg {
-  stroke: #eee;
-}
-
-.gauge-fill {
-  stroke: var(--correct-color);
-  transition: stroke-dashoffset 1.5s ease-out;
-}
-
-.gauge-text {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--text-color);
-}
-
-/* ==========================================
-   Shadowing Component
-========================================== */
-.shadowing-display {
-  background: #fff;
-  border: 1px solid #eee;
-  padding: 15px;
-  border-radius: var(--border-radius);
-  margin-top: 15px;
-}
-
-.model-text {
-  font-size: 1.1rem;
-  color: #333;
-  margin-bottom: 15px;
-  border-bottom: 1px dashed #ccc;
-  padding-bottom: 10px;
-}
-
-.user-text {
-  font-size: 1.1rem;
-  color: var(--primary-color);
-  min-height: 2em;
-}
-
-/* ==========================================
-   Next Button
-========================================== */
 #next-btn {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 15px;
-  border-radius: var(--border-radius);
-  font-size: 1.1rem;
-  cursor: pointer;
-  margin-top: 10px;
-  font-weight: bold;
-  width: 100%;
+  background-color: var(--primary-color); color: white; border: none; padding: 18px; 
+  border-radius: var(--border-radius-btn); font-size: 1.1rem; cursor: pointer; 
+  margin-top: 15px; font-weight: bold; width: 100%; box-shadow: 0 6px 16px rgba(94, 53, 177, 0.2); transition: all 0.3s;
 }
-
-#next-btn:hover {
-  background-color: var(--primary-light);
-}
-/* ==========================================
-   Visual List Screen (問題一覧)
-========================================== */
-#visual-list-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.visual-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.visual-card {
-  background: white;
-  border-radius: var(--border-radius);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 2px solid transparent;
-}
-
-.visual-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-  border-color: var(--primary-light);
-}
-
-.visual-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: contain;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #eee;
-}
-
-.visual-card-info {
-  padding: 15px;
-  text-align: center;
-}
-
-.visual-card-title {
-  font-weight: bold;
-  color: var(--primary-color);
-  font-size: 1.1rem;
-}
+#next-btn:hover { background-color: #4C2B91; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(94, 53, 177, 0.3); }

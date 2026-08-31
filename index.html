@@ -8,13 +8,17 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
+  <!-- NEW: オープニングアニメーション（スプラッシュスクリーン） -->
+  <div id="splash-screen">
+    <img src="assets/images/logo.png" alt="Lispeak Logo" class="splash-logo" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<h1 class=\'splash-text\'>Lispeak</h1>');">
+  </div>
+
   <header>
     <img src="assets/images/logo.png" alt="Lispeak" class="header-logo" onerror="this.style.display='none'">
     <div id="progress" class="hidden">0 / 0</div>
   </header>
 
   <main>
-    <!-- スタート画面 -->
     <section id="home-screen">
       <img src="assets/images/logo.png" alt="Lispeak Logo" class="main-logo" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<h1>Lispeak</h1>');">
       <h2>問題形式を選択してください</h2>
@@ -23,16 +27,12 @@
       </div>
     </section>
 
-    <!-- NEW: 問題一覧画面 -->
     <section id="visual-list-screen" class="hidden">
       <h2>問題を選択してください</h2>
-      <div id="visual-grid" class="visual-grid">
-        <!-- JavaScriptでここに問題カードが自動生成されます -->
-      </div>
+      <div id="visual-grid" class="visual-grid"></div>
       <button id="back-to-home-btn" class="action-btn" style="margin-top: 30px;">🏠 ホームに戻る</button>
     </section>
 
-    <!-- レベル選択画面 -->
     <section id="level-select-screen" class="hidden">
       <h2>レベルを選択してスタート</h2>
       <img id="level-select-image" src="" alt="Visual Set Image" />
@@ -44,16 +44,26 @@
       <button id="back-to-list-btn" class="action-btn" style="margin-top: 30px;">🔙 一覧に戻る</button>
     </section>
 
-    <!-- アプリメインコンテナ -->
     <div id="app-container" class="hidden">
       
       <div class="left-column">
         <section id="visual-section">
           <img id="question-image" src="" alt="Question Image" />
         </section>
+        
         <section id="audio-section">
-          <audio id="question-audio" controls></audio>
+          <!-- おしゃれなカスタムオーディオプレイヤー -->
+          <div class="custom-audio-player">
+            <button id="play-pause-btn" class="play-pause-btn">▶</button>
+            <div class="audio-progress-container" id="audio-progress-container">
+              <div class="audio-progress-bar" id="audio-progress-bar"></div>
+            </div>
+            <span id="audio-time-display" class="audio-time-display">0:00 / 0:00</span>
+          </div>
+          <!-- 実際の音声要素は見えないように隠す -->
+          <audio id="question-audio" class="hidden"></audio>
         </section>
+
         <section id="answer-section">
           <div class="button-grid">
             <button class="choice-btn" data-choice="1">①</button>
@@ -74,6 +84,8 @@
           <div id="script-container" class="feedback-box">
             <h4>📜 スクリプト</h4>
             <p id="script-text"></p>
+            <!-- 和訳表示エリア -->
+            <p id="script-translation" class="script-translation"></p>
           </div>
 
           <button id="toggle-explanation-btn" class="toggle-btn">💡 解説・語彙を表示 ▾</button>

@@ -17,12 +17,10 @@ class LispeakApp {
     this.homeScreen = document.getElementById('home-screen');
     this.startBtn = document.getElementById('start-btn');
     
-    // NEW: List Screen
     this.visualListScreen = document.getElementById('visual-list-screen');
     this.visualGrid = document.getElementById('visual-grid');
     this.backToHomeBtn = document.getElementById('back-to-home-btn');
 
-    // Level Select Screen
     this.levelSelectScreen = document.getElementById('level-select-screen');
     this.levelSelectImage = document.getElementById('level-select-image');
     this.levelSelectBtns = document.querySelectorAll('.level-select-btn');
@@ -33,11 +31,18 @@ class LispeakApp {
     this.audioEl = document.getElementById('question-audio');
     this.choiceBtns = document.querySelectorAll('.choice-btn');
     
+    // Custom Audio Player Elements
+    this.playPauseBtn = document.getElementById('play-pause-btn');
+    this.audioProgressContainer = document.getElementById('audio-progress-container');
+    this.audioProgressBar = document.getElementById('audio-progress-bar');
+    this.audioTimeDisplay = document.getElementById('audio-time-display');
+
     // Feedback Section Elements
     this.feedbackSec = document.getElementById('feedback-section');
     this.resultTitle = document.getElementById('result-title');
     this.correctNumberDisplay = document.getElementById('correct-number');
     this.scriptText = document.getElementById('script-text');
+    this.scriptTranslation = document.getElementById('script-translation'); // 和訳用
     
     this.toggleExplanationBtn = document.getElementById('toggle-explanation-btn');
     this.explanationWrapper = document.getElementById('explanation-wrapper');
@@ -46,12 +51,10 @@ class LispeakApp {
     this.vocabularyContainer = document.getElementById('vocabulary-container');
     this.vocabularyList = document.getElementById('vocabulary-list');
     
-    // Tab Elements
     this.tabBtns = document.querySelectorAll('.tab-btn');
     this.tabReading = document.getElementById('tab-reading');
     this.tabShadowing = document.getElementById('tab-shadowing');
     
-    // Reading Practice Elements
     this.readingScriptEl = document.getElementById('reading-script');
     this.readingMicBtn = document.getElementById('reading-mic-btn');
     this.readingStopBtn = document.getElementById('reading-stop-btn');
@@ -59,7 +62,6 @@ class LispeakApp {
     this.accuracyGauge = document.getElementById('accuracy-gauge');
     this.accuracyScore = document.getElementById('accuracy-score');
     
-    // Shadowing Elements
     this.shadowingStartBtn = document.getElementById('shadowing-start-btn');
     this.shadowingStopBtn = document.getElementById('shadowing-stop-btn');
     this.shadowingModelText = document.getElementById('shadowing-model-text');
@@ -97,6 +99,13 @@ class LispeakApp {
 
     this.shadowingStartBtn.addEventListener('click', () => this.startShadowingPractice());
     this.shadowingStopBtn.addEventListener('click', () => this.stopShadowingPractice());
+
+    // --- Custom Audio Player Events ---
+    this.playPauseBtn.addEventListener('click', () => this.toggleAudio());
+    this.audioEl.addEventListener('timeupdate', () => this.updateAudioProgress());
+    this.audioEl.addEventListener('loadedmetadata', () => this.updateAudioProgress());
+    this.audioEl.addEventListener('ended', () => { this.playPauseBtn.textContent = '▶'; });
+    this.audioProgressContainer.addEventListener('click', (e) => this.seekAudio(e));
   }
 
   async loadDataAndStart() {
@@ -106,7 +115,6 @@ class LispeakApp {
     }
   }
 
-  // --- NEW: 画面遷移コントロール ---
   showHomeScreen() {
     this.visualListScreen.classList.add('hidden');
     this.homeScreen.classList.remove('hidden');
@@ -144,7 +152,6 @@ class LispeakApp {
       card.appendChild(img);
       card.appendChild(info);
       
-      // カードクリックでレベル選択へ
       card.addEventListener('click', () => {
         this.visualIndex = index;
         this.showLevelSelection();
@@ -173,7 +180,6 @@ class LispeakApp {
     this.playQueue = this.shuffleArray([...currentVisual.questions]);
     this.currentIndex = 0;
     
-    // アプリコンポーネントの表示リセット
     document.getElementById('visual-section').style.display = 'block';
     document.getElementById('audio-section').style.display = 'flex';
     document.getElementById('answer-section').style.display = 'block';
@@ -191,6 +197,48 @@ class LispeakApp {
     return newArr;
   }
 
+  // --- Audio Player Logic ---
+  toggleAudio() {
+    if (this.audioEl.paused) {
+      this.audioEl.play();
+      this.playPauseBtn.textContent = '⏸';
+    } else {
+      this.audioEl.pause();
+      this.playPauseBtn.textContent = '▶';
+    }
+  }
+
+  updateAudioProgress() {
+    const current = this.audioEl.currentTime;
+    const duration = this.audioEl.duration || 0;
+    
+    if (duration > 0) {
+      const progressPercent = (current / duration) * 100;
+      this.audioProgressBar.style.width = `${progressPercent}%`;
+    } else {
+      this.audioProgressBar.style.width = `0%`;
+    }
+    
+    this.audioTimeDisplay.textContent = `${this.formatTime(current)} / ${this.formatTime(duration)}`;
+  }
+
+  formatTime(seconds) {
+    if (isNaN(seconds)) return "0:00";
+    const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60);
+    return `${min}:${sec.toString().padStart(2, '0')}`;
+  }
+
+  seekAudio(e) {
+    const rect = this.audioProgressContainer.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const width = rect.width;
+    const duration = this.audioEl.duration;
+    if (duration) {
+       this.audioEl.currentTime = (clickX / width) * duration;
+    }
+  }
+
   loadCurrentQuestion() {
     const question = this.playQueue[this.currentIndex];
     const levelData = question.levels[this.currentLevel] || question.levels['basic'];
@@ -206,7 +254,13 @@ class LispeakApp {
     });
 
     this.imageEl.src = this.data[this.visualIndex].image;
+    
+    // オーディオソースのセットアップとUIリセット
     this.audioEl.src = levelData.audio;
+    this.playPauseBtn.textContent = '▶';
+    this.audioProgressBar.style.width = '0%';
+    this.audioTimeDisplay.textContent = '0:00 / 0:00';
+
     this.updateProgress();
     
     this.scoreContainer.classList.add('hidden');
@@ -237,6 +291,9 @@ class LispeakApp {
     this.resultTitle.style.color = isCorrect ? 'var(--correct-color)' : 'var(--incorrect-color)';
     this.correctNumberDisplay.textContent = `①②③④`[question.answer - 1]; 
     this.scriptText.textContent = this.currentScript; 
+    
+    // 和訳の表示 (JSONに translation がない場合は空欄)
+    this.scriptTranslation.textContent = levelData.translationJa || "";
 
     if (levelData.explanation) {
       this.explanationText.textContent = levelData.explanation;
@@ -359,6 +416,7 @@ class LispeakApp {
 
     this.audioEl.currentTime = 0;
     this.audioEl.play();
+    this.playPauseBtn.textContent = '⏸'; // プレイヤーアイコンも連動
 
     this.speechHandler.start((transcript) => {
       this.shadowingUserText.textContent = transcript || "聞き取れませんでした...";
@@ -372,6 +430,7 @@ class LispeakApp {
   stopShadowingPractice() {
     this.speechHandler.stop();
     this.audioEl.pause();
+    this.playPauseBtn.textContent = '▶';
     this.shadowingStopBtn.classList.remove('recording');
     this.shadowingStopBtn.classList.add('hidden');
     this.shadowingStartBtn.classList.remove('hidden');
@@ -381,6 +440,7 @@ class LispeakApp {
   stopAllAudioAndMic() {
     this.speechHandler.stop();
     this.audioEl.pause();
+    this.playPauseBtn.textContent = '▶';
     this.readingStopBtn.classList.add('hidden');
     this.readingStopBtn.classList.remove('recording');
     this.readingMicBtn.classList.remove('hidden');
@@ -400,7 +460,6 @@ class LispeakApp {
 
   updateProgress() { this.progressEl.textContent = `Q ${this.currentIndex + 1} / ${this.playQueue.length}`; }
 
-  // 終了画面は「問題一覧へ戻る」ボタンを表示
   showFinishScreen() {
     this.appContainer.classList.remove('show-feedback');
     document.getElementById('visual-section').style.display = 'none';

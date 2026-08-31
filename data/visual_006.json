@@ -1,0 +1,390 @@
+{
+  "id": "visual_006",
+  "title": "Household Goods Sale",
+  "theme": "shopping",
+  "type": "illustration_4choice",
+  "image": "assets/images/visual_006.webp",
+  "optionCount": 4,
+  "availableLevels": [
+    "basic",
+    "standard",
+    "advanced"
+  ],
+  "visualFeatures": {
+    "1": [
+      "storage basket",
+      "leaf design",
+      "price tag $6"
+    ],
+    "2": [
+      "spray bottle",
+      "leaf design",
+      "price tag $7"
+    ],
+    "3": [
+      "storage basket",
+      "star design",
+      "price tag $7"
+    ],
+    "4": [
+      "spray bottle",
+      "star design",
+      "price tag $9"
+    ]
+  },
+  "questions": [
+    {
+      "id": "visual_006_qset01",
+      "displayOrder": 1,
+      "answer": 1,
+      "feedback": {
+        "1": "Correct. It is a storage basket with a leaf design, and it costs six dollars.",
+        "2": "This one is a spray bottle with a leaf design.",
+        "3": "This one is a storage basket, but it has a star design and costs seven dollars.",
+        "4": "This one is a spray bottle with a star design and a higher price."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_006_q01.mp3",
+          "script": "The basket with the leaf design costs six dollars.",
+          "translationJa": "葉の模様がついたかごは6ドルです。",
+          "focus": [
+            "basket",
+            "leaf design",
+            "six dollars"
+          ],
+          "explanation": "「basket」「leaf design」「six dollars」がポイントです。葉の模様のかごで値段が6ドルなのは①です。",
+          "vocabulary": [
+            {
+              "word": "basket",
+              "meaning": "かご"
+            },
+            {
+              "word": "leaf design",
+              "meaning": "葉のデザイン"
+            },
+            {
+              "word": "cost six dollars",
+              "meaning": "6ドルする"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_006_q05.mp3",
+          "script": "The item she wants is the cheaper basket decorated with leaves.",
+          "translationJa": "彼女が欲しいのは、葉の模様で飾られた、より安いほうのかごです。",
+          "focus": [
+            "cheaper basket",
+            "decorated with leaves"
+          ],
+          "explanation": "かごは①と③ですが、「leaves」と「cheaper」から6ドルの①だと判断します。",
+          "vocabulary": [
+            {
+              "word": "cheaper",
+              "meaning": "より安い"
+            },
+            {
+              "word": "decorate A with B",
+              "meaning": "AをBで飾る"
+            },
+            {
+              "word": "item",
+              "meaning": "商品"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_006_q09.mp3",
+          "script": "Among the four products, she chooses the rectangular storage basket with a leaf pattern because it is only six dollars.",
+          "translationJa": "4つの商品の中で、彼女は葉の模様のある長方形の収納かごを選びます。なぜなら、それは6ドルしかしないからです。",
+          "focus": [
+            "among the four products",
+            "rectangular storage basket",
+            "leaf pattern",
+            "only six dollars"
+          ],
+          "explanation": "「rectangular storage basket」と「leaf pattern」に加えて「only six dollars」という条件が入り、①に絞れます。",
+          "vocabulary": [
+            {
+              "word": "storage basket",
+              "meaning": "収納かご"
+            },
+            {
+              "word": "rectangular",
+              "meaning": "長方形の"
+            },
+            {
+              "word": "pattern",
+              "meaning": "模様"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_006_qset02",
+      "displayOrder": 2,
+      "answer": 2,
+      "feedback": {
+        "1": "This one is a basket, not a bottle.",
+        "2": "Correct. It is the spray bottle with a leaf design, and it costs seven dollars.",
+        "3": "This one has the right price, but it is a basket with a star design.",
+        "4": "This one is also a spray bottle, but it has a star design and costs nine dollars."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_006_q02.mp3",
+          "script": "The spray bottle with leaves costs seven dollars.",
+          "translationJa": "葉の模様があるスプレーボトルは7ドルです。",
+          "focus": [
+            "spray bottle",
+            "leaves",
+            "seven dollars"
+          ],
+          "explanation": "「spray bottle」「leaves」「seven dollars」に合うのは②です。",
+          "vocabulary": [
+            {
+              "word": "spray bottle",
+              "meaning": "スプレーボトル"
+            },
+            {
+              "word": "leaves",
+              "meaning": "葉（複数）"
+            },
+            {
+              "word": "seven dollars",
+              "meaning": "7ドル"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_006_q06.mp3",
+          "script": "She is looking for the bottle with a leaf pattern, not the basket, and the price should be seven dollars.",
+          "translationJa": "彼女は、かごではなく葉の模様のあるボトルを探していて、値段は7ドルでなければなりません。",
+          "focus": [
+            "bottle with a leaf pattern",
+            "not the basket",
+            "seven dollars"
+          ],
+          "explanation": "「not the basket」で①と③を除外し、葉の模様で7ドルの②が残ります。",
+          "vocabulary": [
+            {
+              "word": "look for ~",
+              "meaning": "〜を探す"
+            },
+            {
+              "word": "not A but B",
+              "meaning": "AではなくB"
+            },
+            {
+              "word": "price",
+              "meaning": "値段"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_006_q10.mp3",
+          "script": "If she wants a cleaning bottle rather than a basket, and she prefers the one with leaves instead of the starburst design, she should pick the seven-dollar item.",
+          "translationJa": "もし彼女がかごではなく掃除用ボトルを求め、さらに星形ではなく葉の模様のものを好むなら、7ドルの商品を選ぶべきです。",
+          "focus": [
+            "cleaning bottle",
+            "rather than a basket",
+            "leaves instead of the starburst design",
+            "seven-dollar item"
+          ],
+          "explanation": "条件が複数ありますが、「bottle」「leaves」「seven-dollar item」の組み合わせで②が正解です。",
+          "vocabulary": [
+            {
+              "word": "rather than ~",
+              "meaning": "〜ではなく"
+            },
+            {
+              "word": "instead of ~",
+              "meaning": "〜の代わりに"
+            },
+            {
+              "word": "starburst design",
+              "meaning": "放射状の星のデザイン"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_006_qset03",
+      "displayOrder": 3,
+      "answer": 3,
+      "feedback": {
+        "1": "This basket has a leaf design and costs six dollars.",
+        "2": "This is a bottle, not a basket.",
+        "3": "Correct. It is the basket with a star design, and it costs seven dollars.",
+        "4": "This item has a star design, but it is a bottle and costs nine dollars."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_006_q03.mp3",
+          "script": "The basket with the star design costs seven dollars.",
+          "translationJa": "星の模様がついたかごは7ドルです。",
+          "focus": [
+            "basket",
+            "star design",
+            "seven dollars"
+          ],
+          "explanation": "「basket」「star design」「seven dollars」に当てはまるのは③です。",
+          "vocabulary": [
+            {
+              "word": "star design",
+              "meaning": "星のデザイン"
+            },
+            {
+              "word": "basket",
+              "meaning": "かご"
+            },
+            {
+              "word": "cost",
+              "meaning": "〜の値段である"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_006_q07.mp3",
+          "script": "The customer chooses the seven-dollar container with the bold star pattern.",
+          "translationJa": "その客は、大きな星模様のある7ドルの入れ物を選びます。",
+          "focus": [
+            "seven-dollar container",
+            "bold star pattern"
+          ],
+          "explanation": "「container」はかごを指し、「bold star pattern」と7ドルの条件から③が正解です。",
+          "vocabulary": [
+            {
+              "word": "customer",
+              "meaning": "客"
+            },
+            {
+              "word": "container",
+              "meaning": "容器、入れ物"
+            },
+            {
+              "word": "bold",
+              "meaning": "目立つ、はっきりした"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_006_q11.mp3",
+          "script": "Out of the two storage containers, the one she selects is the more decorative version with a large starburst pattern, priced at seven dollars.",
+          "translationJa": "2つの収納容器のうち、彼女が選ぶのは、大きな放射状の星模様がある、より装飾的な7ドルの商品です。",
+          "focus": [
+            "out of the two storage containers",
+            "more decorative version",
+            "large starburst pattern",
+            "priced at seven dollars"
+          ],
+          "explanation": "「two storage containers」は①と③です。その中で「starburst pattern」「seven dollars」に合う③を選びます。",
+          "vocabulary": [
+            {
+              "word": "out of ~",
+              "meaning": "〜の中から"
+            },
+            {
+              "word": "decorative",
+              "meaning": "装飾的な"
+            },
+            {
+              "word": "priced at ~",
+              "meaning": "〜の値段がついている"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_006_qset04",
+      "displayOrder": 4,
+      "answer": 4,
+      "feedback": {
+        "1": "This one is a basket and has a leaf design.",
+        "2": "This one is a bottle, but it has leaves and costs seven dollars.",
+        "3": "This one has a star design, but it is a basket.",
+        "4": "Correct. It is the spray bottle with a star design, and it costs nine dollars."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_006_q04.mp3",
+          "script": "The spray bottle with the star design costs nine dollars.",
+          "translationJa": "星の模様があるスプレーボトルは9ドルです。",
+          "focus": [
+            "spray bottle",
+            "star design",
+            "nine dollars"
+          ],
+          "explanation": "「spray bottle」「star design」「nine dollars」の3条件から④だと分かります。",
+          "vocabulary": [
+            {
+              "word": "spray bottle",
+              "meaning": "スプレーボトル"
+            },
+            {
+              "word": "nine dollars",
+              "meaning": "9ドル"
+            },
+            {
+              "word": "star design",
+              "meaning": "星のデザイン"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_006_q08.mp3",
+          "script": "He wants the more expensive bottle, the one with the starburst label on it.",
+          "translationJa": "彼は、より高いほうのボトル、つまり放射状の星のラベルがついたものを欲しがっています。",
+          "focus": [
+            "more expensive bottle",
+            "starburst label"
+          ],
+          "explanation": "ボトルは②と④ですが、「more expensive」と「starburst label」から④が正解です。",
+          "vocabulary": [
+            {
+              "word": "more expensive",
+              "meaning": "より高価な"
+            },
+            {
+              "word": "label",
+              "meaning": "ラベル"
+            },
+            {
+              "word": "on it",
+              "meaning": "その上に"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_006_q12.mp3",
+          "script": "Rather than choosing either basket, he decides on the spray bottle marked with a starburst symbol, which has the highest price of the four items.",
+          "translationJa": "どちらのかごを選ぶのでもなく、彼は放射状の星印がついたスプレーボトルを選びます。それは4つの商品の中で最も高い値段です。",
+          "focus": [
+            "rather than choosing either basket",
+            "spray bottle",
+            "starburst symbol",
+            "highest price"
+          ],
+          "explanation": "「either basket」で①と③を除外し、「spray bottle」「highest price」で④に絞ります。",
+          "vocabulary": [
+            {
+              "word": "either",
+              "meaning": "どちらの〜も"
+            },
+            {
+              "word": "mark A with B",
+              "meaning": "AにBの印を付ける"
+            },
+            {
+              "word": "highest price",
+              "meaning": "最も高い値段"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
