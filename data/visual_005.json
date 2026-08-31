@@ -1,0 +1,385 @@
+{
+  "id": "visual_005",
+  "title": "Breakfast Routine",
+  "theme": "daily_life",
+  "type": "illustration_4choice",
+  "image": "assets/images/visual_005.webp",
+  "optionCount": 4,
+  "availableLevels": [
+    "basic",
+    "standard",
+    "advanced"
+  ],
+  "visualFeatures": {
+    "1": [
+      "pouring milk",
+      "bowl of cereal",
+      "banana on the table"
+    ],
+    "2": [
+      "spreading jam",
+      "slice of toast",
+      "open jam jar"
+    ],
+    "3": [
+      "cutting fruit",
+      "banana slices",
+      "cutting board"
+    ],
+    "4": [
+      "washing a plate",
+      "kitchen sink",
+      "dish sponge"
+    ]
+  },
+  "questions": [
+    {
+      "id": "visual_005_qset01",
+      "displayOrder": 1,
+      "answer": 1,
+      "feedback": {
+        "1": "Correct. She is pouring milk into a bowl of cereal.",
+        "2": "She is spreading jam on a piece of toast.",
+        "3": "She is cutting fruit on a cutting board.",
+        "4": "She is washing a plate at the sink."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_005_q01.mp3",
+          "script": "The girl is pouring milk into her cereal.",
+          "translationJa": "その女の子はシリアルに牛乳を注いでいます。",
+          "focus": [
+            "pouring milk",
+            "cereal"
+          ],
+          "explanation": "「pouring milk」と「cereal」が決め手です。シリアルの入ったボウルに牛乳を注いでいる①を選びます。",
+          "vocabulary": [
+            {
+              "word": "pour milk",
+              "meaning": "牛乳を注ぐ"
+            },
+            {
+              "word": "cereal",
+              "meaning": "シリアル"
+            },
+            {
+              "word": "into",
+              "meaning": "〜の中に"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_005_q05.mp3",
+          "script": "The girl is preparing breakfast by pouring milk into a bowl of cereal.",
+          "translationJa": "その女の子は、シリアルの入ったボウルに牛乳を注いで朝食を準備しています。",
+          "focus": [
+            "preparing breakfast",
+            "pouring milk",
+            "a bowl of cereal"
+          ],
+          "explanation": "朝食準備の場面で、「a bowl of cereal」に牛乳を注いでいるのは①です。",
+          "vocabulary": [
+            {
+              "word": "prepare breakfast",
+              "meaning": "朝食を準備する"
+            },
+            {
+              "word": "bowl",
+              "meaning": "ボウル"
+            },
+            {
+              "word": "a bowl of cereal",
+              "meaning": "シリアルの入ったボウル"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_005_q09.mp3",
+          "script": "While making breakfast in the kitchen, the girl is pouring milk from a carton into a bowl of cereal on the counter.",
+          "translationJa": "キッチンで朝食を作りながら、その女の子はカウンターの上のシリアル入りボウルに紙パックから牛乳を注いでいます。",
+          "focus": [
+            "from a carton",
+            "into a bowl of cereal",
+            "on the counter"
+          ],
+          "explanation": "「from a carton」「into a bowl of cereal」という具体的な描写から①だと分かります。",
+          "vocabulary": [
+            {
+              "word": "carton",
+              "meaning": "紙パック"
+            },
+            {
+              "word": "counter",
+              "meaning": "カウンター"
+            },
+            {
+              "word": "while making breakfast",
+              "meaning": "朝食を作りながら"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_005_qset02",
+      "displayOrder": 2,
+      "answer": 2,
+      "feedback": {
+        "1": "She is pouring milk into cereal.",
+        "2": "Correct. She is spreading jam on toast.",
+        "3": "She is cutting fruit on a cutting board.",
+        "4": "She is washing a plate at the sink."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_005_q02.mp3",
+          "script": "The girl is putting jam on her toast.",
+          "translationJa": "その女の子はトーストにジャムを塗っています。",
+          "focus": [
+            "putting jam on",
+            "toast"
+          ],
+          "explanation": "「jam」と「toast」がポイントです。トーストにジャムを塗っている②を選びます。",
+          "vocabulary": [
+            {
+              "word": "put jam on ~",
+              "meaning": "〜にジャムを塗る"
+            },
+            {
+              "word": "toast",
+              "meaning": "トースト"
+            },
+            {
+              "word": "jam",
+              "meaning": "ジャム"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_005_q06.mp3",
+          "script": "She is spreading jam on a slice of toast beside an open jar.",
+          "translationJa": "彼女は、開いた瓶のそばで一枚のトーストにジャムを塗っています。",
+          "focus": [
+            "spreading jam",
+            "a slice of toast",
+            "open jar"
+          ],
+          "explanation": "「spreading jam」と「open jar」の組み合わせから②が正解です。",
+          "vocabulary": [
+            {
+              "word": "spread ~ on ...",
+              "meaning": "〜を…に塗る"
+            },
+            {
+              "word": "slice",
+              "meaning": "一切れ"
+            },
+            {
+              "word": "jar",
+              "meaning": "瓶"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_005_q10.mp3",
+          "script": "Instead of pouring milk or washing dishes, the girl is calmly using a knife to spread jam over a piece of toast.",
+          "translationJa": "牛乳を注いだり皿を洗ったりするのではなく、その女の子はナイフを使って一枚のトーストにジャムを塗っています。",
+          "focus": [
+            "instead of",
+            "using a knife",
+            "spread jam over a piece of toast"
+          ],
+          "explanation": "他の選択肢を除外しながら、「using a knife to spread jam」で②に絞れます。",
+          "vocabulary": [
+            {
+              "word": "instead of ~",
+              "meaning": "〜の代わりに、〜するのではなく"
+            },
+            {
+              "word": "piece of toast",
+              "meaning": "一枚のトースト"
+            },
+            {
+              "word": "calmly",
+              "meaning": "落ち着いて"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_005_qset03",
+      "displayOrder": 3,
+      "answer": 3,
+      "feedback": {
+        "1": "She is pouring milk into cereal.",
+        "2": "She is spreading jam on toast.",
+        "3": "Correct. She is cutting fruit on a cutting board.",
+        "4": "She is washing a plate at the sink."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_005_q03.mp3",
+          "script": "The girl is cutting fruit on the board.",
+          "translationJa": "その女の子はまな板の上で果物を切っています。",
+          "focus": [
+            "cutting fruit",
+            "on the board"
+          ],
+          "explanation": "「cutting fruit」が中心情報です。まな板の上で果物を切っている③を選びます。",
+          "vocabulary": [
+            {
+              "word": "cut fruit",
+              "meaning": "果物を切る"
+            },
+            {
+              "word": "board",
+              "meaning": "まな板"
+            },
+            {
+              "word": "cut",
+              "meaning": "切る"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_005_q07.mp3",
+          "script": "She is slicing fruit on a cutting board while a bowl of fruit sits nearby.",
+          "translationJa": "彼女は、近くに果物の入ったボウルを置きながら、まな板の上で果物を切っています。",
+          "focus": [
+            "slicing fruit",
+            "cutting board",
+            "bowl of fruit nearby"
+          ],
+          "explanation": "「slicing fruit」と「bowl of fruit nearby」が見分けのポイントで、③です。",
+          "vocabulary": [
+            {
+              "word": "slice",
+              "meaning": "薄く切る"
+            },
+            {
+              "word": "cutting board",
+              "meaning": "まな板"
+            },
+            {
+              "word": "nearby",
+              "meaning": "近くに"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_005_q11.mp3",
+          "script": "At the kitchen counter, the girl is using a knife to cut fruit into pieces on a cutting board, with more fruit set in a bowl to the side.",
+          "translationJa": "キッチンカウンターで、その女の子はナイフを使ってまな板の上の果物を小さく切っており、横にはさらに果物の入ったボウルがあります。",
+          "focus": [
+            "using a knife",
+            "cut fruit into pieces",
+            "more fruit in a bowl to the side"
+          ],
+          "explanation": "「cut fruit into pieces」と「bowl to the side」という追加情報から③が最も適切です。",
+          "vocabulary": [
+            {
+              "word": "into pieces",
+              "meaning": "細かく、いくつかに"
+            },
+            {
+              "word": "to the side",
+              "meaning": "横に"
+            },
+            {
+              "word": "set",
+              "meaning": "置かれた"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_005_qset04",
+      "displayOrder": 4,
+      "answer": 4,
+      "feedback": {
+        "1": "She is pouring milk into cereal.",
+        "2": "She is spreading jam on toast.",
+        "3": "She is cutting fruit on a cutting board.",
+        "4": "Correct. She is washing a plate in the sink."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_005_q04.mp3",
+          "script": "The girl is washing a plate in the sink.",
+          "translationJa": "その女の子は流しでお皿を洗っています。",
+          "focus": [
+            "washing a plate",
+            "in the sink"
+          ],
+          "explanation": "「washing a plate」と「in the sink」を聞き取り、④を選びます。",
+          "vocabulary": [
+            {
+              "word": "wash a plate",
+              "meaning": "皿を洗う"
+            },
+            {
+              "word": "sink",
+              "meaning": "流し、シンク"
+            },
+            {
+              "word": "wash",
+              "meaning": "洗う"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_005_q08.mp3",
+          "script": "She is cleaning a dish at the sink with a sponge while water runs from the faucet.",
+          "translationJa": "彼女は蛇口から水が流れる中、スポンジを使って流しでお皿を洗っています。",
+          "focus": [
+            "cleaning a dish",
+            "with a sponge",
+            "water runs from the faucet"
+          ],
+          "explanation": "「with a sponge」と「water runs from the faucet」が分かりやすい特徴で、④です。",
+          "vocabulary": [
+            {
+              "word": "clean a dish",
+              "meaning": "皿を洗う"
+            },
+            {
+              "word": "sponge",
+              "meaning": "スポンジ"
+            },
+            {
+              "word": "faucet",
+              "meaning": "蛇口"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_005_q12.mp3",
+          "script": "Standing by the kitchen sink, the girl is scrubbing a plate with a sponge as soapy water fills the basin.",
+          "translationJa": "キッチンの流し台のそばで、その女の子は石けん水のたまったシンクの中でスポンジを使って皿をこすり洗いしています。",
+          "focus": [
+            "standing by the kitchen sink",
+            "scrubbing a plate",
+            "soapy water fills the basin"
+          ],
+          "explanation": "「scrubbing a plate」と「soapy water fills the basin」の詳細描写から④が正解です。",
+          "vocabulary": [
+            {
+              "word": "scrub",
+              "meaning": "ごしごし洗う"
+            },
+            {
+              "word": "soapy water",
+              "meaning": "石けん水"
+            },
+            {
+              "word": "basin",
+              "meaning": "洗い桶、シンクのくぼみ部分"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

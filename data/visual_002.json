@@ -1,0 +1,389 @@
+{
+  "id": "visual_002",
+  "title": "Waiting at the Bus Stop",
+  "theme": "daily_life",
+  "type": "illustration_4choice",
+  "image": "assets/images/visual_002.webp",
+  "optionCount": 4,
+  "availableLevels": [
+    "basic",
+    "standard",
+    "advanced"
+  ],
+  "visualFeatures": {
+    "1": [
+      "standing",
+      "bus stop",
+      "no umbrella"
+    ],
+    "2": [
+      "standing",
+      "bus stop",
+      "closed umbrella"
+    ],
+    "3": [
+      "sitting",
+      "bench",
+      "closed umbrella"
+    ],
+    "4": [
+      "standing",
+      "bus stop",
+      "open umbrella"
+    ]
+  },
+  "questions": [
+    {
+      "id": "visual_002_qset01",
+      "displayOrder": 1,
+      "answer": 1,
+      "feedback": {
+        "1": "Correct. He is standing at the bus stop without an umbrella.",
+        "2": "He is standing, but he is holding a closed umbrella.",
+        "3": "He has an umbrella and is sitting on the bench.",
+        "4": "He is standing under an open umbrella."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_002_q01.mp3",
+          "script": "The boy is standing by the bus stop without an umbrella.",
+          "translationJa": "その男の子は傘を持たずにバス停のそばに立っています。",
+          "focus": [
+            "standing",
+            "by the bus stop",
+            "without an umbrella"
+          ],
+          "explanation": "「standing」と「without an umbrella」を聞き取り、傘を持たずに立っている絵を選びます。",
+          "vocabulary": [
+            {
+              "word": "stand by ~",
+              "meaning": "〜のそばに立つ"
+            },
+            {
+              "word": "bus stop",
+              "meaning": "バス停"
+            },
+            {
+              "word": "without ~",
+              "meaning": "〜なしで"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_002_q05.mp3",
+          "script": "The boy is waiting near the bench, but he is not carrying an umbrella.",
+          "translationJa": "その男の子はベンチの近くで待っていますが、傘は持っていません。",
+          "focus": [
+            "waiting near the bench",
+            "but",
+            "not carrying an umbrella"
+          ],
+          "explanation": "「but」の後ろにある「not carrying an umbrella」が重要です。立って待っていて、傘を持っていない絵が正解です。",
+          "vocabulary": [
+            {
+              "word": "wait",
+              "meaning": "待つ"
+            },
+            {
+              "word": "near ~",
+              "meaning": "〜の近くで"
+            },
+            {
+              "word": "carry",
+              "meaning": "持ち運ぶ、携帯する"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_002_q09.mp3",
+          "script": "While waiting beside the bus stop sign, the boy is standing with no umbrella in his hands.",
+          "translationJa": "バス停の標識のそばで待ちながら、その男の子は手に傘を持たずに立っています。",
+          "focus": [
+            "while waiting",
+            "beside the bus stop sign",
+            "no umbrella in his hands"
+          ],
+          "explanation": "「While waiting ...」で状況が先に示されます。最後の「no umbrella in his hands」まで聞いて、傘を持っていない絵を判断します。",
+          "vocabulary": [
+            {
+              "word": "while ~ing",
+              "meaning": "〜しながら"
+            },
+            {
+              "word": "beside ~",
+              "meaning": "〜のそばに"
+            },
+            {
+              "word": "sign",
+              "meaning": "標識、表示"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_002_qset02",
+      "displayOrder": 2,
+      "answer": 2,
+      "feedback": {
+        "1": "He is standing, but he does not have an umbrella.",
+        "2": "Correct. He is standing and holding a closed umbrella.",
+        "3": "He is holding a closed umbrella, but he is sitting on the bench.",
+        "4": "He is standing, but the umbrella is open."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_002_q02.mp3",
+          "script": "The boy is standing and holding a closed umbrella.",
+          "translationJa": "その男の子は立って、閉じた傘を持っています。",
+          "focus": [
+            "standing",
+            "holding",
+            "closed umbrella"
+          ],
+          "explanation": "男の子が立っていることと、傘が開いていないことの2点を確認します。",
+          "vocabulary": [
+            {
+              "word": "hold",
+              "meaning": "持つ、握る"
+            },
+            {
+              "word": "closed",
+              "meaning": "閉じた"
+            },
+            {
+              "word": "umbrella",
+              "meaning": "傘"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_002_q06.mp3",
+          "script": "The boy is waiting by the bus stop with a closed umbrella in one hand.",
+          "translationJa": "その男の子は片手に閉じた傘を持って、バス停のそばで待っています。",
+          "focus": [
+            "waiting by the bus stop",
+            "closed umbrella",
+            "in one hand"
+          ],
+          "explanation": "「closed umbrella in one hand」が決め手です。座っている絵や傘を開いている絵ではありません。",
+          "vocabulary": [
+            {
+              "word": "wait by ~",
+              "meaning": "〜のそばで待つ"
+            },
+            {
+              "word": "in one hand",
+              "meaning": "片手に"
+            },
+            {
+              "word": "closed umbrella",
+              "meaning": "閉じた傘"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_002_q10.mp3",
+          "script": "The boy remains on his feet beside the bus stop sign, holding an umbrella that has not been opened.",
+          "translationJa": "その男の子はバス停の標識のそばに立ったまま、まだ開いていない傘を持っています。",
+          "focus": [
+            "remains on his feet",
+            "beside the bus stop sign",
+            "has not been opened"
+          ],
+          "explanation": "「remains on his feet」は立ったままでいること、「has not been opened」は傘が閉じていることを表します。",
+          "vocabulary": [
+            {
+              "word": "remain",
+              "meaning": "〜のままでいる"
+            },
+            {
+              "word": "on one's feet",
+              "meaning": "立って"
+            },
+            {
+              "word": "has not been opened",
+              "meaning": "まだ開かれていない"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_002_qset03",
+      "displayOrder": 3,
+      "answer": 3,
+      "feedback": {
+        "1": "He is standing and does not have an umbrella.",
+        "2": "He has a closed umbrella, but he is standing.",
+        "3": "Correct. He is sitting on the bench with a closed umbrella.",
+        "4": "He is standing and holding an open umbrella."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_002_q03.mp3",
+          "script": "The boy is sitting on the bench with a closed umbrella.",
+          "translationJa": "その男の子は閉じた傘を持ってベンチに座っています。",
+          "focus": [
+            "sitting",
+            "on the bench",
+            "closed umbrella"
+          ],
+          "explanation": "「sitting on the bench」と「closed umbrella」の両方に合う絵を選びます。",
+          "vocabulary": [
+            {
+              "word": "sit on ~",
+              "meaning": "〜に座る"
+            },
+            {
+              "word": "bench",
+              "meaning": "ベンチ"
+            },
+            {
+              "word": "closed umbrella",
+              "meaning": "閉じた傘"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_002_q07.mp3",
+          "script": "The boy has taken a seat on the bench and is holding a closed umbrella beside him.",
+          "translationJa": "その男の子はベンチに腰掛け、閉じた傘をそばに持っています。",
+          "focus": [
+            "has taken a seat",
+            "on the bench",
+            "closed umbrella"
+          ],
+          "explanation": "「take a seat」は「座る」の言い換えです。傘は開いておらず、男の子は立っていません。",
+          "vocabulary": [
+            {
+              "word": "take a seat",
+              "meaning": "座る、腰掛ける"
+            },
+            {
+              "word": "hold",
+              "meaning": "持つ"
+            },
+            {
+              "word": "beside him",
+              "meaning": "彼のそばに"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_002_q11.mp3",
+          "script": "Rather than standing near the sign, the boy is seated on the bench with his unopened umbrella in hand.",
+          "translationJa": "標識の近くに立つのではなく、その男の子は開いていない傘を手にしてベンチに座っています。",
+          "focus": [
+            "rather than standing",
+            "is seated",
+            "unopened umbrella"
+          ],
+          "explanation": "「Rather than standing」で立っている選択肢を除外し、「is seated」と「unopened umbrella」で③に絞ります。",
+          "vocabulary": [
+            {
+              "word": "rather than ~",
+              "meaning": "〜するのではなく"
+            },
+            {
+              "word": "be seated",
+              "meaning": "座っている"
+            },
+            {
+              "word": "unopened",
+              "meaning": "開いていない"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_002_qset04",
+      "displayOrder": 4,
+      "answer": 4,
+      "feedback": {
+        "1": "He is standing, but he does not have an umbrella.",
+        "2": "He is standing with an umbrella, but it is closed.",
+        "3": "He has a closed umbrella and is sitting on the bench.",
+        "4": "Correct. He is standing under an open umbrella."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_002_q04.mp3",
+          "script": "The boy is standing under an open umbrella.",
+          "translationJa": "その男の子は開いた傘の下に立っています。",
+          "focus": [
+            "standing",
+            "under",
+            "open umbrella"
+          ],
+          "explanation": "「open umbrella」が最も重要です。傘を開いて頭上にさしている絵を選びます。",
+          "vocabulary": [
+            {
+              "word": "under ~",
+              "meaning": "〜の下に"
+            },
+            {
+              "word": "open umbrella",
+              "meaning": "開いた傘"
+            },
+            {
+              "word": "stand",
+              "meaning": "立つ"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_002_q08.mp3",
+          "script": "The boy is waiting at the bus stop while holding an open umbrella above his head.",
+          "translationJa": "その男の子は開いた傘を頭の上にさしながら、バス停で待っています。",
+          "focus": [
+            "waiting at the bus stop",
+            "open umbrella",
+            "above his head"
+          ],
+          "explanation": "「while holding an open umbrella above his head」から、傘を開いて立っている④を選びます。",
+          "vocabulary": [
+            {
+              "word": "while ~ing",
+              "meaning": "〜しながら"
+            },
+            {
+              "word": "above ~",
+              "meaning": "〜の上に"
+            },
+            {
+              "word": "above his head",
+              "meaning": "彼の頭の上に"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_002_q12.mp3",
+          "script": "As he waits beside the bus stop sign, the boy is standing with an umbrella opened over his head.",
+          "translationJa": "バス停の標識のそばで待ちながら、その男の子は頭上に傘を開いて立っています。",
+          "focus": [
+            "as he waits",
+            "standing",
+            "umbrella opened over his head"
+          ],
+          "explanation": "冒頭の状況説明に続き、「umbrella opened over his head」が決定情報です。閉じた傘を持つ②とは区別します。",
+          "vocabulary": [
+            {
+              "word": "as ~",
+              "meaning": "〜しながら、〜するとき"
+            },
+            {
+              "word": "over one's head",
+              "meaning": "頭上に"
+            },
+            {
+              "word": "opened",
+              "meaning": "開かれた、開いた"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

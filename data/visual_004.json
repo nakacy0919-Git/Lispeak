@@ -1,0 +1,388 @@
+{
+  "id": "visual_004",
+  "title": "At the Train Platform",
+  "theme": "travel",
+  "type": "illustration_4choice",
+  "image": "assets/images/visual_004.webp",
+  "optionCount": 4,
+  "availableLevels": [
+    "basic",
+    "standard",
+    "advanced"
+  ],
+  "visualFeatures": {
+    "1": [
+      "standing",
+      "upright suitcase",
+      "hand on suitcase handle"
+    ],
+    "2": [
+      "walking",
+      "pulling suitcase",
+      "suitcase tilted behind"
+    ],
+    "3": [
+      "sitting on bench",
+      "upright suitcase beside bench"
+    ],
+    "4": [
+      "standing",
+      "suitcase lying flat",
+      "looking worried"
+    ]
+  },
+  "questions": [
+    {
+      "id": "visual_004_qset01",
+      "displayOrder": 1,
+      "answer": 1,
+      "feedback": {
+        "1": "Correct. She is standing beside an upright suitcase.",
+        "2": "She is walking and pulling the suitcase behind her.",
+        "3": "She is sitting on the bench beside the suitcase.",
+        "4": "She is standing, but the suitcase is lying flat on the ground."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_004_q01.mp3",
+          "script": "The girl is standing beside her suitcase.",
+          "translationJa": "その女の子はスーツケースのそばに立っています。",
+          "focus": [
+            "standing",
+            "beside",
+            "suitcase"
+          ],
+          "explanation": "「standing beside her suitcase」を聞き取り、スーツケースの横に立っている①を選びます。",
+          "vocabulary": [
+            {
+              "word": "stand beside ~",
+              "meaning": "〜のそばに立つ"
+            },
+            {
+              "word": "suitcase",
+              "meaning": "スーツケース"
+            },
+            {
+              "word": "stand",
+              "meaning": "立つ"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_004_q05.mp3",
+          "script": "The girl is waiting on the platform with her suitcase standing upright next to her.",
+          "translationJa": "その女の子は、スーツケースを自分の横に立てた状態でホームで待っています。",
+          "focus": [
+            "waiting on the platform",
+            "standing upright",
+            "next to her"
+          ],
+          "explanation": "「standing upright next to her」が重要です。スーツケースが横倒しではなく、女の子の横に立っている①が正解です。",
+          "vocabulary": [
+            {
+              "word": "platform",
+              "meaning": "駅のホーム"
+            },
+            {
+              "word": "upright",
+              "meaning": "まっすぐ立った"
+            },
+            {
+              "word": "next to ~",
+              "meaning": "〜の隣に"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_004_q09.mp3",
+          "script": "While waiting for the train, the girl remains standing with one hand resting on the handle of her upright suitcase.",
+          "translationJa": "電車を待ちながら、その女の子はまっすぐ立てたスーツケースの持ち手に片手を置いて立っています。",
+          "focus": [
+            "while waiting for the train",
+            "remains standing",
+            "hand resting on the handle",
+            "upright suitcase"
+          ],
+          "explanation": "「remains standing」と「upright suitcase」の2点から①を判断します。歩いて引いている②とは区別します。",
+          "vocabulary": [
+            {
+              "word": "remain ~ing",
+              "meaning": "〜したままでいる"
+            },
+            {
+              "word": "rest one's hand on ~",
+              "meaning": "〜に手を置く"
+            },
+            {
+              "word": "handle",
+              "meaning": "持ち手、取っ手"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_004_qset02",
+      "displayOrder": 2,
+      "answer": 2,
+      "feedback": {
+        "1": "She is standing still beside the suitcase.",
+        "2": "Correct. She is walking and pulling the suitcase behind her.",
+        "3": "She is sitting on the bench.",
+        "4": "She is standing next to a suitcase lying flat on the ground."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_004_q02.mp3",
+          "script": "The girl is walking and pulling her suitcase.",
+          "translationJa": "その女の子は歩きながらスーツケースを引いています。",
+          "focus": [
+            "walking",
+            "pulling",
+            "suitcase"
+          ],
+          "explanation": "「walking」と「pulling her suitcase」が決め手です。歩きながらスーツケースを後ろに引いている②を選びます。",
+          "vocabulary": [
+            {
+              "word": "walk",
+              "meaning": "歩く"
+            },
+            {
+              "word": "pull",
+              "meaning": "引く"
+            },
+            {
+              "word": "pull a suitcase",
+              "meaning": "スーツケースを引く"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_004_q06.mp3",
+          "script": "The girl is moving along the platform with her suitcase rolling behind her.",
+          "translationJa": "その女の子は、スーツケースを後ろで転がしながらホームを進んでいます。",
+          "focus": [
+            "moving along the platform",
+            "rolling behind her"
+          ],
+          "explanation": "「moving along」と「rolling behind her」から、移動中の②が正解です。",
+          "vocabulary": [
+            {
+              "word": "move along ~",
+              "meaning": "〜に沿って進む"
+            },
+            {
+              "word": "roll",
+              "meaning": "転がる、転がす"
+            },
+            {
+              "word": "behind ~",
+              "meaning": "〜の後ろに"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_004_q10.mp3",
+          "script": "As she walks down the platform, the girl is pulling a wheeled suitcase that is tilted behind her.",
+          "translationJa": "ホームを歩きながら、その女の子は後ろに傾いたキャスター付きスーツケースを引いています。",
+          "focus": [
+            "as she walks",
+            "pulling a wheeled suitcase",
+            "tilted behind her"
+          ],
+          "explanation": "「walks」「pulling」「tilted behind her」の複数情報を統合して②を選びます。",
+          "vocabulary": [
+            {
+              "word": "wheeled suitcase",
+              "meaning": "キャスター付きスーツケース"
+            },
+            {
+              "word": "tilted",
+              "meaning": "傾いた"
+            },
+            {
+              "word": "behind her",
+              "meaning": "彼女の後ろに"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_004_qset03",
+      "displayOrder": 3,
+      "answer": 3,
+      "feedback": {
+        "1": "She is standing beside the suitcase.",
+        "2": "She is walking and pulling the suitcase.",
+        "3": "Correct. She is sitting on the bench with the suitcase beside her.",
+        "4": "She is standing next to a suitcase lying flat on the ground."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_004_q03.mp3",
+          "script": "The girl is sitting on a bench beside her suitcase.",
+          "translationJa": "その女の子はスーツケースのそばのベンチに座っています。",
+          "focus": [
+            "sitting",
+            "on a bench",
+            "beside her suitcase"
+          ],
+          "explanation": "「sitting on a bench」が最も重要です。座っているのは③だけです。",
+          "vocabulary": [
+            {
+              "word": "sit on a bench",
+              "meaning": "ベンチに座る"
+            },
+            {
+              "word": "beside ~",
+              "meaning": "〜のそばに"
+            },
+            {
+              "word": "bench",
+              "meaning": "ベンチ"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_004_q07.mp3",
+          "script": "The girl has taken a seat on the platform bench, leaving her suitcase upright next to her.",
+          "translationJa": "その女の子はホームのベンチに腰掛け、スーツケースを自分の横に立てて置いています。",
+          "focus": [
+            "has taken a seat",
+            "platform bench",
+            "suitcase upright next to her"
+          ],
+          "explanation": "「has taken a seat」は「座る」の言い換えです。さらにスーツケースが横に立っているので③です。",
+          "vocabulary": [
+            {
+              "word": "take a seat",
+              "meaning": "座る、腰掛ける"
+            },
+            {
+              "word": "leave A ~",
+              "meaning": "Aを〜の状態にしておく"
+            },
+            {
+              "word": "upright",
+              "meaning": "まっすぐ立った"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_004_q11.mp3",
+          "script": "Rather than continuing to walk, the girl is seated on a bench with her suitcase positioned upright beside her.",
+          "translationJa": "歩き続けるのではなく、その女の子はベンチに座り、スーツケースを自分のそばに立てて置いています。",
+          "focus": [
+            "rather than continuing to walk",
+            "is seated",
+            "positioned upright beside her"
+          ],
+          "explanation": "「Rather than continuing to walk」で②を除外し、「is seated」で③に絞ります。",
+          "vocabulary": [
+            {
+              "word": "rather than ~",
+              "meaning": "〜するのではなく"
+            },
+            {
+              "word": "be seated",
+              "meaning": "座っている"
+            },
+            {
+              "word": "position",
+              "meaning": "置く、配置する"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_004_qset04",
+      "displayOrder": 4,
+      "answer": 4,
+      "feedback": {
+        "1": "Her suitcase is standing upright.",
+        "2": "She is walking and pulling the suitcase.",
+        "3": "She is sitting on the bench, and the suitcase is upright.",
+        "4": "Correct. She is standing beside a suitcase that is lying flat on the ground."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_004_q04.mp3",
+          "script": "The girl is standing beside her suitcase, which is lying on the ground.",
+          "translationJa": "その女の子は、地面に横たわっているスーツケースのそばに立っています。",
+          "focus": [
+            "standing beside",
+            "suitcase",
+            "lying on the ground"
+          ],
+          "explanation": "スーツケースが立っておらず、地面に横になっている④を選びます。",
+          "vocabulary": [
+            {
+              "word": "lie on the ground",
+              "meaning": "地面に横たわる"
+            },
+            {
+              "word": "ground",
+              "meaning": "地面"
+            },
+            {
+              "word": "beside ~",
+              "meaning": "〜のそばに"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_004_q08.mp3",
+          "script": "The girl looks worried as she stands next to a suitcase that has fallen onto its side.",
+          "translationJa": "その女の子は、横倒しになったスーツケースのそばに立ち、不安そうにしています。",
+          "focus": [
+            "looks worried",
+            "stands next to",
+            "fallen onto its side"
+          ],
+          "explanation": "「looks worried」と「fallen onto its side」の組み合わせから④が正解です。",
+          "vocabulary": [
+            {
+              "word": "look worried",
+              "meaning": "心配そうに見える"
+            },
+            {
+              "word": "fall onto its side",
+              "meaning": "横倒しになる"
+            },
+            {
+              "word": "next to ~",
+              "meaning": "〜の隣に"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_004_q12.mp3",
+          "script": "The girl has stopped on the platform and is looking down at her suitcase, which is lying flat on its side.",
+          "translationJa": "その女の子はホームで立ち止まり、横倒しになっているスーツケースを見下ろしています。",
+          "focus": [
+            "has stopped",
+            "looking down at",
+            "lying flat on its side"
+          ],
+          "explanation": "「looking down at her suitcase」と「lying flat on its side」が決定情報です。④を選びます。",
+          "vocabulary": [
+            {
+              "word": "look down at ~",
+              "meaning": "〜を見下ろす"
+            },
+            {
+              "word": "lie flat",
+              "meaning": "平らに横たわる"
+            },
+            {
+              "word": "on its side",
+              "meaning": "横向きに"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,387 @@
+{
+  "id": "visual_003",
+  "title": "Water Bottles",
+  "theme": "daily_life",
+  "type": "illustration_4choice",
+  "image": "assets/images/visual_003.webp",
+  "optionCount": 4,
+  "availableLevels": [
+    "basic",
+    "standard",
+    "advanced"
+  ],
+  "visualFeatures": {
+    "1": [
+      "clear plastic bottle",
+      "blue cap",
+      "round shape"
+    ],
+    "2": [
+      "blue sports bottle",
+      "black loop cap",
+      "contoured shape"
+    ],
+    "3": [
+      "mint-green flask",
+      "silver lid",
+      "slim shape"
+    ],
+    "4": [
+      "stainless-steel bottle",
+      "black handle cap",
+      "metal body"
+    ]
+  },
+  "questions": [
+    {
+      "id": "visual_003_qset01",
+      "displayOrder": 1,
+      "answer": 1,
+      "feedback": {
+        "1": "Correct. It is a clear plastic bottle with a blue cap.",
+        "2": "This one is a blue sports bottle with a black loop cap.",
+        "3": "This one is a slim mint-green flask with a silver lid.",
+        "4": "This one is a stainless-steel bottle with a black handle cap."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_003_q01.mp3",
+          "script": "The bottle is clear and has a blue cap.",
+          "translationJa": "そのボトルは透明で、青いキャップが付いています。",
+          "focus": [
+            "clear",
+            "blue cap"
+          ],
+          "explanation": "「clear」と「blue cap」が決め手です。透明なペットボトルの①を選びます。",
+          "vocabulary": [
+            {
+              "word": "clear",
+              "meaning": "透明な"
+            },
+            {
+              "word": "cap",
+              "meaning": "ふた、キャップ"
+            },
+            {
+              "word": "blue cap",
+              "meaning": "青いキャップ"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_003_q05.mp3",
+          "script": "It is a plastic bottle with a blue top, not a metal one.",
+          "translationJa": "それは青いふたの付いたプラスチックのボトルで、金属製ではありません。",
+          "focus": [
+            "plastic bottle",
+            "blue top",
+            "not a metal one"
+          ],
+          "explanation": "金属製ではなく、青いふたのプラスチックボトルなので①です。",
+          "vocabulary": [
+            {
+              "word": "plastic",
+              "meaning": "プラスチック製の"
+            },
+            {
+              "word": "top",
+              "meaning": "上部、ふた"
+            },
+            {
+              "word": "metal",
+              "meaning": "金属"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_003_q09.mp3",
+          "script": "The correct choice is the transparent bottle with a blue screw cap rather than a metal flask or a sports bottle.",
+          "translationJa": "正しい選択肢は、金属のフラスクやスポーツボトルではなく、青いねじ式キャップの透明なボトルです。",
+          "focus": [
+            "transparent bottle",
+            "blue screw cap",
+            "rather than"
+          ],
+          "explanation": "「transparent bottle」と「blue screw cap」で①に決まります。他の金属ボトルやスポーツボトルを除外します。",
+          "vocabulary": [
+            {
+              "word": "transparent",
+              "meaning": "透明な"
+            },
+            {
+              "word": "screw cap",
+              "meaning": "ねじ式キャップ"
+            },
+            {
+              "word": "rather than ~",
+              "meaning": "〜ではなく"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_003_qset02",
+      "displayOrder": 2,
+      "answer": 2,
+      "feedback": {
+        "1": "This bottle is clear plastic with a blue cap, but it is not the sports bottle.",
+        "2": "Correct. It is the blue sports bottle with a black loop cap.",
+        "3": "This is a slim mint-green flask with a silver lid.",
+        "4": "This is a stainless-steel bottle with a black handle cap."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_003_q02.mp3",
+          "script": "The bottle is blue and has a black cap with a loop.",
+          "translationJa": "そのボトルは青くて、輪の付いた黒いキャップがあります。",
+          "focus": [
+            "blue",
+            "black cap",
+            "loop"
+          ],
+          "explanation": "青いボトルで、ループ付きの黒いキャップがあるので②です。",
+          "vocabulary": [
+            {
+              "word": "loop",
+              "meaning": "輪、ループ"
+            },
+            {
+              "word": "black cap",
+              "meaning": "黒いキャップ"
+            },
+            {
+              "word": "blue bottle",
+              "meaning": "青いボトル"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_003_q06.mp3",
+          "script": "Choose the sports bottle with the dark lid and the handle-shaped loop on top.",
+          "translationJa": "上に取っ手のような輪が付いた、濃い色のふたのスポーツボトルを選びなさい。",
+          "focus": [
+            "sports bottle",
+            "dark lid",
+            "loop on top"
+          ],
+          "explanation": "スポーツボトルで、上部にループがあるのは②です。",
+          "vocabulary": [
+            {
+              "word": "sports bottle",
+              "meaning": "スポーツボトル"
+            },
+            {
+              "word": "lid",
+              "meaning": "ふた"
+            },
+            {
+              "word": "on top",
+              "meaning": "上に"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_003_q10.mp3",
+          "script": "The right answer is the contoured blue bottle fitted with a black lid that includes a carrying loop.",
+          "translationJa": "正解は、持ち運び用のループが付いた黒いふたを備えた、くびれのある青いボトルです。",
+          "focus": [
+            "contoured blue bottle",
+            "black lid",
+            "carrying loop"
+          ],
+          "explanation": "「contoured」「carrying loop」から、形にくびれがありループ付きの②を選びます。",
+          "vocabulary": [
+            {
+              "word": "contoured",
+              "meaning": "くびれのある、輪郭のある"
+            },
+            {
+              "word": "fitted with ~",
+              "meaning": "〜を備えた"
+            },
+            {
+              "word": "carrying loop",
+              "meaning": "持ち運び用ループ"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_003_qset03",
+      "displayOrder": 3,
+      "answer": 3,
+      "feedback": {
+        "1": "This one is a clear plastic bottle with a blue cap.",
+        "2": "This one is a blue sports bottle with a black loop cap.",
+        "3": "Correct. It is the slim mint-green flask with a silver lid.",
+        "4": "This one is a stainless-steel bottle with a black handle cap."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_003_q03.mp3",
+          "script": "The bottle is light green and has a silver lid.",
+          "translationJa": "そのボトルは薄い緑色で、銀色のふたが付いています。",
+          "focus": [
+            "light green",
+            "silver lid"
+          ],
+          "explanation": "薄い緑色で銀色のふたがあるので③です。",
+          "vocabulary": [
+            {
+              "word": "light green",
+              "meaning": "薄い緑色"
+            },
+            {
+              "word": "silver",
+              "meaning": "銀色の"
+            },
+            {
+              "word": "lid",
+              "meaning": "ふた"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_003_q07.mp3",
+          "script": "Pick the slim flask with a pale green body and a shiny metal top.",
+          "translationJa": "薄い緑色の本体と光沢のある金属のふたを持つ、細身のフラスクを選びなさい。",
+          "focus": [
+            "slim flask",
+            "pale green body",
+            "metal top"
+          ],
+          "explanation": "細身で淡い緑色、金属のふたという特徴から③です。",
+          "vocabulary": [
+            {
+              "word": "slim",
+              "meaning": "細身の"
+            },
+            {
+              "word": "pale",
+              "meaning": "淡い"
+            },
+            {
+              "word": "shiny",
+              "meaning": "光沢のある"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_003_q11.mp3",
+          "script": "Select the narrow mint-green flask topped with a silver metal lid, not the blue sports bottle or the steel one.",
+          "translationJa": "青いスポーツボトルやステンレスのものではなく、銀色の金属のふたが付いた細いミントグリーンのフラスクを選びなさい。",
+          "focus": [
+            "narrow mint-green flask",
+            "silver metal lid",
+            "not the ..."
+          ],
+          "explanation": "「mint-green flask」と「silver metal lid」で③に絞れます。",
+          "vocabulary": [
+            {
+              "word": "narrow",
+              "meaning": "細い"
+            },
+            {
+              "word": "mint-green",
+              "meaning": "ミントグリーンの"
+            },
+            {
+              "word": "steel",
+              "meaning": "鋼、ステンレス"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "visual_003_qset04",
+      "displayOrder": 4,
+      "answer": 4,
+      "feedback": {
+        "1": "This one is clear plastic with a blue cap.",
+        "2": "This one is a blue sports bottle with a loop cap.",
+        "3": "This one is a slim mint-green flask with a silver lid.",
+        "4": "Correct. It is the stainless-steel bottle with a black handle cap."
+      },
+      "levels": {
+        "basic": {
+          "audio": "assets/audio/visual_003_q04.mp3",
+          "script": "The bottle is silver and has a black handle on the cap.",
+          "translationJa": "そのボトルは銀色で、キャップに黒い持ち手があります。",
+          "focus": [
+            "silver",
+            "black handle",
+            "cap"
+          ],
+          "explanation": "銀色の本体と黒い持ち手付きのキャップがあるので④です。",
+          "vocabulary": [
+            {
+              "word": "silver",
+              "meaning": "銀色の"
+            },
+            {
+              "word": "handle",
+              "meaning": "持ち手"
+            },
+            {
+              "word": "cap",
+              "meaning": "キャップ"
+            }
+          ]
+        },
+        "standard": {
+          "audio": "assets/audio/visual_003_q08.mp3",
+          "script": "Choose the metal bottle with a black carrying handle attached to the lid.",
+          "translationJa": "ふたに黒い持ち運び用ハンドルが付いた金属のボトルを選びなさい。",
+          "focus": [
+            "metal bottle",
+            "black carrying handle",
+            "attached to the lid"
+          ],
+          "explanation": "金属製で、ふたに持ち手が付いているのは④だけです。",
+          "vocabulary": [
+            {
+              "word": "attached to ~",
+              "meaning": "〜に取り付けられた"
+            },
+            {
+              "word": "carrying handle",
+              "meaning": "持ち運び用ハンドル"
+            },
+            {
+              "word": "metal bottle",
+              "meaning": "金属のボトル"
+            }
+          ]
+        },
+        "advanced": {
+          "audio": "assets/audio/visual_003_q12.mp3",
+          "script": "The correct option is the stainless-steel bottle featuring a black cap with a built-in handle.",
+          "translationJa": "正しい選択肢は、持ち手が組み込まれた黒いキャップを備えたステンレス製ボトルです。",
+          "focus": [
+            "stainless-steel bottle",
+            "black cap",
+            "built-in handle"
+          ],
+          "explanation": "「stainless-steel bottle」と「built-in handle」で④が正解だと分かります。",
+          "vocabulary": [
+            {
+              "word": "stainless-steel",
+              "meaning": "ステンレス製の"
+            },
+            {
+              "word": "feature",
+              "meaning": "〜を特徴として備える"
+            },
+            {
+              "word": "built-in",
+              "meaning": "組み込み式の"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

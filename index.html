@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lispeak</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
   <header>
-    <!-- ヘッダー用スモールロゴ -->
     <img src="assets/images/logo.png" alt="Lispeak" class="header-logo" onerror="this.style.display='none'">
     <div id="progress" class="hidden">0 / 0</div>
   </header>
@@ -16,29 +16,44 @@
   <main>
     <!-- スタート画面 -->
     <section id="home-screen">
-      <!-- メインロゴ -->
       <img src="assets/images/logo.png" alt="Lispeak Logo" class="main-logo" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<h1>Lispeak</h1>');">
       <h2>問題形式を選択してください</h2>
       <div class="category-buttons">
-        <button class="category-btn" data-category="illustration">共通テスト イラスト問題</button>
-        <!-- 今後、他のカテゴリ（例：図表読み取りなど）を追加できます -->
+        <button class="category-btn" id="start-btn">共通テスト イラスト問題</button>
       </div>
     </section>
 
-    <!-- アプリメインコンテナ（初期は非表示） -->
+    <!-- NEW: 問題一覧画面 -->
+    <section id="visual-list-screen" class="hidden">
+      <h2>問題を選択してください</h2>
+      <div id="visual-grid" class="visual-grid">
+        <!-- JavaScriptでここに問題カードが自動生成されます -->
+      </div>
+      <button id="back-to-home-btn" class="action-btn" style="margin-top: 30px;">🏠 ホームに戻る</button>
+    </section>
+
+    <!-- レベル選択画面 -->
+    <section id="level-select-screen" class="hidden">
+      <h2>レベルを選択してスタート</h2>
+      <img id="level-select-image" src="" alt="Visual Set Image" />
+      <div class="level-select-buttons">
+        <button class="level-select-btn" data-level="basic">Basic</button>
+        <button class="level-select-btn" data-level="standard">Standard</button>
+        <button class="level-select-btn" data-level="advanced">Advanced</button>
+      </div>
+      <button id="back-to-list-btn" class="action-btn" style="margin-top: 30px;">🔙 一覧に戻る</button>
+    </section>
+
+    <!-- アプリメインコンテナ -->
     <div id="app-container" class="hidden">
       
-      <!-- 左カラム（問題・音声・選択肢） -->
       <div class="left-column">
         <section id="visual-section">
           <img id="question-image" src="" alt="Question Image" />
         </section>
-
         <section id="audio-section">
-          <div id="audio-level-container" class="level-container"></div>
           <audio id="question-audio" controls></audio>
         </section>
-
         <section id="answer-section">
           <div class="button-grid">
             <button class="choice-btn" data-choice="1">①</button>
@@ -49,33 +64,80 @@
         </section>
       </div>
 
-      <!-- 右カラム（フィードバック・シャドーイング） -->
       <div class="right-column">
         <section id="feedback-section" class="hidden">
-          <h2 id="result-title"></h2>
-          <div id="script-container">
-            <strong>Script (タップして再生):</strong>
-            <div id="audio-script-chunks" class="chunk-container"></div>
+          <div class="feedback-header">
+             <h2 id="result-title"></h2>
+             <div class="correct-answer-display">正解: <span id="correct-number"></span></div>
           </div>
-          <p id="feedback-text"></p>
+          
+          <div id="script-container" class="feedback-box">
+            <h4>📜 スクリプト</h4>
+            <p id="script-text"></p>
+          </div>
 
-          <div id="shadowing-section">
-            <hr class="divider">
-            <h3>🎙️ 音読・シャドーイング</h3>
-            <p class="instruction">マイクボタンを押してスクリプトを音読してください。正しく発音できた単語が光ります。</p>
-            <div id="shadowing-script" class="shadowing-script"></div>
-            <button id="mic-btn" class="mic-btn">🎙️ 音読を始める</button>
+          <button id="toggle-explanation-btn" class="toggle-btn">💡 解説・語彙を表示 ▾</button>
+
+          <div id="explanation-wrapper" class="hidden">
+            <div id="explanation-container" class="feedback-box">
+              <h4>💡 解説</h4>
+              <p id="explanation-text"></p>
+              <p id="feedback-text" class="sub-feedback"></p>
+            </div>
+            <div id="vocabulary-container" class="feedback-box">
+              <h4>📝 語彙・表現</h4>
+              <ul id="vocabulary-list"></ul>
+            </div>
+          </div>
+
+          <div id="practice-section" class="feedback-box practice-box">
+            <div class="tab-header">
+              <button class="tab-btn active" data-tab="reading">🎙️ 音読</button>
+              <button class="tab-btn" data-tab="shadowing">🎧 Shadowing</button>
+            </div>
+
+            <div class="tab-content" id="tab-reading">
+               <p class="instruction">マイクボタンを押し、スクリプトを音読してください。終了後、スコアが表示されます。</p>
+               <div id="reading-script" class="practice-script"></div>
+               
+               <div id="score-container" class="hidden">
+                 <div class="gauge-wrapper">
+                    <svg viewBox="0 0 100 50" class="gauge">
+                      <path class="gauge-bg" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke-width="10" stroke-linecap="round"/>
+                      <path class="gauge-fill" id="accuracy-gauge" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke-width="10" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="125.6"/>
+                    </svg>
+                    <div class="gauge-text"><span id="accuracy-score">0</span>%</div>
+                 </div>
+               </div>
+
+               <div class="practice-controls">
+                 <button id="reading-mic-btn" class="action-btn mic-btn">🎙️ 音読を始める</button>
+                 <button id="reading-stop-btn" class="action-btn stop-btn hidden">⏹️ 音読を終了して採点</button>
+               </div>
+            </div>
+
+            <div class="tab-content hidden" id="tab-shadowing">
+               <p class="instruction">モデル音声と一緒に発音しましょう。あなたの発話が下に文字起こしされます。</p>
+               <div class="practice-controls">
+                 <button id="shadowing-start-btn" class="action-btn">▶️ モデル音声 ＋ 録音スタート</button>
+                 <button id="shadowing-stop-btn" class="action-btn stop-btn hidden">⏹️ 停止</button>
+               </div>
+               <div class="shadowing-display">
+                 <strong>モデル:</strong>
+                 <p id="shadowing-model-text" class="model-text"></p>
+                 <strong>あなた:</strong>
+                 <p id="shadowing-user-text" class="user-text">...</p>
+               </div>
+            </div>
           </div>
 
           <button id="next-btn">次の問題へ</button>
         </section>
       </div>
-
     </div>
   </main>
 
   <script src="js/dataLoader.js"></script>
-  <script src="js/audio.js"></script>
   <script src="js/speech.js"></script>
   <script src="js/app.js"></script>
 </body>
