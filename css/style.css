@@ -1,0 +1,224 @@
+:root {
+  --primary-color: #5E35B1; /* Premium Purple */
+  --primary-light: #9162E4;
+  --bg-color: #F8F9FA;
+  --text-color: #333333;
+  --correct-color: #4CAF50;
+  --incorrect-color: #F44336;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+header {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+#app-container {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Image */
+#visual-section img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: #fff;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+/* Audio */
+#audio-section {
+  display: flex;
+  justify-content: center;
+}
+audio {
+  width: 100%;
+  outline: none;
+}
+
+/* Buttons */
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.choice-btn {
+  background-color: white;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.choice-btn:hover {
+  background-color: var(--primary-light);
+  color: white;
+  border-color: var(--primary-light);
+}
+
+.choice-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Feedback */
+.hidden {
+  display: none !important;
+}
+
+#feedback-section {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#script-container {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+#next-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#next-btn:hover {
+  background-color: var(--primary-light);
+}
+/* --- シャドーイング機能用スタイル --- */
+.divider {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+
+#shadowing-section h3 {
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+.instruction {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.shadowing-script {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  padding: 15px;
+  background: #f4f6f8;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.shadowing-script span {
+  transition: color 0.2s;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/* 発音判定用カラー */
+.word-correct {
+  color: var(--correct-color);
+  font-weight: bold;
+}
+
+.mic-btn {
+  background-color: var(--text-color);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 15px;
+}
+
+/* 録音中のアニメーション */
+.mic-btn.recording {
+  background-color: var(--incorrect-color);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(244, 67, 54, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
+}
+/* --- チャンク再生機能用スタイル --- */
+.chunk-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.chunk-btn {
+  background-color: #ede7f6;
+  color: var(--text-color);
+  border: 1px solid var(--primary-light);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+}
+
+.chunk-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+}
