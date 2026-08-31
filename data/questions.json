@@ -1,191 +1,195 @@
 [
   {
     "id": "visual_001",
-    "title": "Bicycle Safety",
-    "theme": "bicycle",
+    "title": "Bicycle in the Park",
+    "theme": "daily_life",
+    "type": "illustration_4choice",
     "image": "assets/images/visual_001.webp",
-    "description": {
-      "ja": "自転車に関する4択イラスト問題"
+    "optionCount": 4,
+    "availableLevels": [
+      "basic",
+      "standard",
+      "advanced"
+    ],
+    "visualFeatures": {
+      "1": [
+        "standing",
+        "beside bicycle",
+        "no helmet"
+      ],
+      "2": [
+        "riding",
+        "helmet",
+        "both hands on handlebars"
+      ],
+      "3": [
+        "standing",
+        "beside bicycle",
+        "helmet"
+      ],
+      "4": [
+        "riding",
+        "helmet",
+        "one hand raised"
+      ]
     },
     "questions": [
       {
-        "id": "visual_001_q01",
-        "level": "basic",
-        "order": 1,
-        "audio": "assets/audio/visual_001_q01.mp3",
-        "script": "The girl is standing beside her bicycle without a helmet.",
+        "id": "visual_001_qset01",
+        "displayOrder": 1,
         "answer": 1,
-        "focus": ["standing", "beside", "without a helmet"],
+        "levels": {
+          "basic": {
+            "audio": "assets/audio/visual_001_q01.mp3",
+            "script": "The girl is standing beside her bicycle without a helmet.",
+            "focus": [
+              "standing",
+              "beside",
+              "without a helmet"
+            ]
+          },
+          "standard": {
+            "audio": "assets/audio/visual_001_q05.mp3",
+            "script": "The girl is standing next to her bicycle, and she does not have a helmet on.",
+            "focus": [
+              "standing next to",
+              "does not have a helmet on"
+            ]
+          },
+          "advanced": {
+            "audio": "assets/audio/visual_001_q09.mp3",
+            "script": "The girl, who is not wearing a helmet, is standing beside her bicycle rather than riding it.",
+            "focus": [
+              "relative clause",
+              "not wearing a helmet",
+              "rather than riding"
+            ]
+          }
+        },
         "feedback": {
-          "1": "Correct. She is standing beside the bicycle and she is not wearing a helmet.",
-          "2": "She is wearing a helmet and riding the bicycle in this picture.",
+          "1": "Correct. She is standing beside the bicycle and is not wearing a helmet.",
+          "2": "She is wearing a helmet and riding the bicycle with both hands on the handlebars.",
           "3": "She is standing beside the bicycle, but she is wearing a helmet.",
-          "4": "She is riding the bicycle and raising one hand in this picture."
+          "4": "She is wearing a helmet and riding the bicycle with one hand raised."
         }
       },
       {
-        "id": "visual_001_q02",
-        "level": "basic",
-        "order": 2,
-        "audio": "assets/audio/visual_001_q02.mp3",
-        "script": "The girl is riding her bicycle with both hands on the handlebars.",
+        "id": "visual_001_qset02",
+        "displayOrder": 2,
         "answer": 2,
-        "focus": ["riding", "both hands", "handlebars"],
+        "levels": {
+          "basic": {
+            "audio": "assets/audio/visual_001_q02.mp3",
+            "script": "The girl is riding her bicycle with both hands on the handlebars.",
+            "focus": [
+              "riding",
+              "both hands",
+              "handlebars"
+            ]
+          },
+          "standard": {
+            "audio": "assets/audio/visual_001_q06.mp3",
+            "script": "The girl is wearing a helmet and riding her bicycle with both hands on the handlebars.",
+            "focus": [
+              "wearing a helmet",
+              "riding",
+              "both hands"
+            ]
+          },
+          "advanced": {
+            "audio": "assets/audio/visual_001_q10.mp3",
+            "script": "With her helmet on, the girl is riding the bicycle while keeping both hands on the handlebars.",
+            "focus": [
+              "with her helmet on",
+              "while",
+              "both hands on the handlebars"
+            ]
+          }
+        },
         "feedback": {
-          "1": "She is standing beside the bicycle, not riding it.",
-          "2": "Correct. She is riding the bicycle with both hands on the handlebars.",
+          "1": "She is standing beside the bicycle and is not wearing a helmet.",
+          "2": "Correct. She is wearing a helmet and riding with both hands on the handlebars.",
           "3": "She is wearing a helmet, but she is standing beside the bicycle.",
-          "4": "She is riding, but one hand is raised."
+          "4": "She is riding with a helmet on, but one hand is raised."
         }
       },
       {
-        "id": "visual_001_q03",
-        "level": "basic",
-        "order": 3,
-        "audio": "assets/audio/visual_001_q03.mp3",
-        "script": "The girl wearing a helmet is standing beside her bicycle.",
+        "id": "visual_001_qset03",
+        "displayOrder": 3,
         "answer": 3,
-        "focus": ["wearing a helmet", "standing", "beside"],
+        "levels": {
+          "basic": {
+            "audio": "assets/audio/visual_001_q03.mp3",
+            "script": "The girl wearing a helmet is standing beside her bicycle.",
+            "focus": [
+              "wearing a helmet",
+              "standing",
+              "beside"
+            ]
+          },
+          "standard": {
+            "audio": "assets/audio/visual_001_q07.mp3",
+            "script": "The girl has her helmet on, but she is standing next to the bicycle rather than riding it.",
+            "focus": [
+              "has her helmet on",
+              "standing next to",
+              "rather than riding"
+            ]
+          },
+          "advanced": {
+            "audio": "assets/audio/visual_001_q11.mp3",
+            "script": "Although the girl is wearing a helmet, she is standing beside the bicycle instead of riding it.",
+            "focus": [
+              "although",
+              "wearing a helmet",
+              "instead of riding"
+            ]
+          }
+        },
         "feedback": {
           "1": "She is standing beside the bicycle, but she is not wearing a helmet.",
-          "2": "She is wearing a helmet, but she is riding the bicycle.",
-          "3": "Correct. She is wearing a helmet and standing beside her bicycle.",
-          "4": "She is wearing a helmet, but she is riding and raising one hand."
+          "2": "She is wearing a helmet, but she is riding the bicycle with both hands on the handlebars.",
+          "3": "Correct. She is wearing a helmet and standing beside the bicycle.",
+          "4": "She is wearing a helmet, but she is riding the bicycle with one hand raised."
         }
       },
       {
-        "id": "visual_001_q04",
-        "level": "basic",
-        "order": 4,
-        "audio": "assets/audio/visual_001_q04.mp3",
-        "script": "The girl is riding her bicycle with one hand raised.",
+        "id": "visual_001_qset04",
+        "displayOrder": 4,
         "answer": 4,
-        "focus": ["riding", "one hand raised"],
+        "levels": {
+          "basic": {
+            "audio": "assets/audio/visual_001_q04.mp3",
+            "script": "The girl is riding her bicycle with one hand raised.",
+            "focus": [
+              "riding",
+              "one hand raised"
+            ]
+          },
+          "standard": {
+            "audio": "assets/audio/visual_001_q08.mp3",
+            "script": "Wearing a helmet, the girl is riding her bicycle while waving with one hand.",
+            "focus": [
+              "wearing a helmet",
+              "riding",
+              "waving with one hand"
+            ]
+          },
+          "advanced": {
+            "audio": "assets/audio/visual_001_q12.mp3",
+            "script": "The girl is riding with her helmet on, keeping one hand on the handlebar while raising the other.",
+            "focus": [
+              "helmet on",
+              "keeping one hand on the handlebar",
+              "raising the other"
+            ]
+          }
+        },
         "feedback": {
-          "1": "She is not riding the bicycle in this picture.",
-          "2": "She is riding, but both hands are on the handlebars.",
+          "1": "She is standing beside the bicycle and is not wearing a helmet.",
+          "2": "She is riding with a helmet on, but both hands are on the handlebars.",
           "3": "She is wearing a helmet, but she is standing beside the bicycle.",
-          "4": "Correct. She is riding the bicycle with one hand raised."
-        }
-      },
-      {
-        "id": "visual_001_q05",
-        "level": "standard",
-        "order": 5,
-        "audio": "assets/audio/visual_001_q05.mp3",
-        "script": "The girl is not riding her bicycle, and she is not wearing a helmet.",
-        "answer": 1,
-        "focus": ["not riding", "not wearing a helmet"],
-        "feedback": {
-          "1": "Correct. She is standing beside the bicycle and not wearing a helmet.",
-          "2": "She is riding the bicycle and wearing a helmet.",
-          "3": "She is not riding, but she is wearing a helmet.",
-          "4": "She is riding the bicycle and raising one hand."
-        }
-      },
-      {
-        "id": "visual_001_q06",
-        "level": "standard",
-        "order": 6,
-        "audio": "assets/audio/visual_001_q06.mp3",
-        "script": "The girl with a helmet is riding her bicycle in the usual way.",
-        "answer": 2,
-        "focus": ["with a helmet", "riding", "usual way"],
-        "feedback": {
-          "1": "She is not wearing a helmet and she is not riding.",
-          "2": "Correct. She is wearing a helmet and riding normally with both hands.",
-          "3": "She is wearing a helmet, but she is standing beside the bicycle.",
-          "4": "She is riding with a helmet, but one hand is raised."
-        }
-      },
-      {
-        "id": "visual_001_q07",
-        "level": "standard",
-        "order": 7,
-        "audio": "assets/audio/visual_001_q07.mp3",
-        "script": "The girl has a helmet on, but she is standing next to her bicycle.",
-        "answer": 3,
-        "focus": ["has a helmet on", "standing next to"],
-        "feedback": {
-          "1": "She is standing next to the bicycle, but she has no helmet on.",
-          "2": "She has a helmet on, but she is riding.",
-          "3": "Correct. She has a helmet on and is standing next to the bicycle.",
-          "4": "She has a helmet on, but she is riding and raising one hand."
-        }
-      },
-      {
-        "id": "visual_001_q08",
-        "level": "standard",
-        "order": 8,
-        "audio": "assets/audio/visual_001_q08.mp3",
-        "script": "The girl on the bicycle is waving with one hand.",
-        "answer": 4,
-        "focus": ["on the bicycle", "waving", "one hand"],
-        "feedback": {
-          "1": "She is not on the bicycle in this picture.",
-          "2": "She is on the bicycle, but both hands are on the handlebars.",
-          "3": "She is wearing a helmet, but she is not on the bicycle.",
-          "4": "Correct. She is on the bicycle and waving with one hand."
-        }
-      },
-      {
-        "id": "visual_001_q09",
-        "level": "advanced",
-        "order": 9,
-        "audio": "assets/audio/visual_001_q09.mp3",
-        "script": "The girl has stopped next to her bicycle, and she is not wearing a helmet.",
-        "answer": 1,
-        "focus": ["has stopped", "next to", "not wearing a helmet"],
-        "feedback": {
-          "1": "Correct. She is next to the bicycle and is not wearing a helmet.",
-          "2": "She is wearing a helmet and riding the bicycle.",
-          "3": "She has stopped next to the bicycle, but she is wearing a helmet.",
-          "4": "She is riding the bicycle and is not next to it."
-        }
-      },
-      {
-        "id": "visual_001_q10",
-        "level": "advanced",
-        "order": 10,
-        "audio": "assets/audio/visual_001_q10.mp3",
-        "script": "The girl is already on her bicycle, wearing a helmet and holding the handlebars with both hands.",
-        "answer": 2,
-        "focus": ["already on her bicycle", "wearing a helmet", "both hands"],
-        "feedback": {
-          "1": "She is not on the bicycle and she is not wearing a helmet.",
-          "2": "Correct. She is on the bicycle, wearing a helmet, and holding the handlebars with both hands.",
-          "3": "She is wearing a helmet, but she is standing beside the bicycle.",
-          "4": "She is on the bicycle and wearing a helmet, but one hand is raised."
-        }
-      },
-      {
-        "id": "visual_001_q11",
-        "level": "advanced",
-        "order": 11,
-        "audio": "assets/audio/visual_001_q11.mp3",
-        "script": "Although the girl is wearing a helmet, she is standing beside the bicycle instead of riding it.",
-        "answer": 3,
-        "focus": ["although", "wearing a helmet", "instead of riding"],
-        "feedback": {
-          "1": "She is standing beside the bicycle, but she is not wearing a helmet.",
-          "2": "She is wearing a helmet, but she is riding the bicycle.",
-          "3": "Correct. She is wearing a helmet, but she is standing beside the bicycle instead of riding it.",
-          "4": "She is wearing a helmet, but she is riding and raising one hand."
-        }
-      },
-      {
-        "id": "visual_001_q12",
-        "level": "advanced",
-        "order": 12,
-        "audio": "assets/audio/visual_001_q12.mp3",
-        "script": "The girl is riding her bicycle with a helmet on, and she has taken one hand off the handlebars.",
-        "answer": 4,
-        "focus": ["riding", "with a helmet on", "one hand off the handlebars"],
-        "feedback": {
-          "1": "She is not riding the bicycle and she is not wearing a helmet.",
-          "2": "She is riding with a helmet on, but both hands are still on the handlebars.",
-          "3": "She is wearing a helmet, but she is standing beside the bicycle.",
-          "4": "Correct. She is riding with a helmet on and has taken one hand off the handlebars."
+          "4": "Correct. She is riding with a helmet on and has one hand raised."
         }
       }
     ]

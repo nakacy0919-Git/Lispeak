@@ -4,12 +4,23 @@ class LispeakApp {
     this.playQueue = [];
     this.currentIndex = 0;
     
-    this.speechHandler = new SpeechHandler(); // 音声認識モジュール
-    this.currentScript = ""; // 現在のスクリプト
+    this.speechHandler = new SpeechHandler(); 
+    this.currentScript = ""; 
+    this.currentLevel = "basic"; 
 
-    // DOM Elements
+    this.correctSound = new Audio('assets/audio/correct.mp3');
+    this.incorrectSound = new Audio('assets/audio/incorrect.mp3');
+
+    // DOM Elements - Start Screen
+    this.homeScreen = document.getElementById('home-screen');
+    this.categoryBtns = document.querySelectorAll('.category-btn');
+    
+    // DOM Elements - App
+    this.appContainer = document.getElementById('app-container');
+    this.progressHeader = document.getElementById('progress');
     this.imageEl = document.getElementById('question-image');
     this.audioEl = document.getElementById('question-audio');
+    this.audioLevelContainer = document.getElementById('audio-level-container');
     this.choiceBtns = document.querySelectorAll('.choice-btn');
     this.feedbackSec = document.getElementById('feedback-section');
     this.resultTitle = document.getElementById('result-title');
@@ -17,18 +28,52 @@ class LispeakApp {
     this.nextBtn = document.getElementById('next-btn');
     this.progressEl = document.getElementById('progress');
     
-    // Shadowing & Chunk Elements
+    // Shadowing Elements
     this.shadowingScriptEl = document.getElementById('shadowing-script');
     this.micBtn = document.getElementById('mic-btn');
 
     this.bindEvents();
   }
 
-  async init() {
-    this.data = await DataLoader.loadQuestions();
-    if (this.data && this.data.length > 0) {
-      this.buildPlayQueue();
-      this.loadCurrentQuestion();
+  // 初期化はデータを読み込まず、スタート画面で待機
+  init() {
+    // 起動時は何もしない（ボタンクリックでスタート）
+  }
+
+  bindEvents() {
+    // スタートボタン
+    this.categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => this.startApp());
+    });
+
+    // 選択肢ボタン
+    this.choiceBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => this.handleAnswer(e));
+    });
+
+    // 次へボタン
+    this.nextBtn.addEventListener('click', () => {
+      this.stopShadowing();
+      this.nextQuestion();
+    });
+
+    // マイクボタン
+    this.micBtn.addEventListener('click', () => this.toggleShadowing());
+  }
+
+  async startApp() {
+    // 画面切り替え
+    this.homeScreen.classList.add('hidden');
+    this.appContainer.classList.remove('hidden');
+    this.progressHeader.classList.remove('hidden');
+
+    // データロード（初回のみ）
+    if (this.data.length === 0) {
+      this.data = await DataLoader.loadQuestions();
+      if (this.data && this.data.length > 0) {
+        this.buildPlayQueue();
+        this.loadCurrentQuestion();
+      }
     }
   }
 
@@ -36,7 +81,6 @@ class LispeakApp {
     this.playQueue = [];
     const maxQuestions = Math.max(...this.data.map(v => v.questions.length));
 
-    // 画像セットをまたいでローテーション出題するためのキュー構築
     for (let qIndex = 0; qIndex < maxQuestions; qIndex++) {
       for (let vIndex = 0; vIndex < this.data.length; vIndex++) {
         const visual = this.data[vIndex];
@@ -50,24 +94,15 @@ class LispeakApp {
     }
   }
 
-  bindEvents() {
-    this.choiceBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => this.handleAnswer(e));
-    });
-    this.nextBtn.addEventListener('click', () => {
-      this.stopShadowing(); // 次へ行く前に録音を確実に停止
-      this.nextQuestion();
-    });
-    this.micBtn.addEventListener('click', () => this.toggleShadowing());
-  }
-
   loadCurrentQuestion() {
     const currentItem = this.playQueue[this.currentIndex];
     const question = currentItem.question;
-    this.currentScript = question.script; // スクリプトを保持
+    this.currentLevel = "basic";
 
-    // UIリセット
+    // UIリセット (1カラムに戻す)
+    this.appContainer.classList.remove('show-feedback');
     this.feedbackSec.classList.add('hidden');
+    
     this.choiceBtns.forEach(btn => {
       btn.disabled = false;
       btn.style.backgroundColor = '';
@@ -75,14 +110,53 @@ class LispeakApp {
       btn.style.border = '2px solid var(--primary-color)';
     });
 
-    // データセット
     this.imageEl.src = currentItem.image;
     this.imageEl.onerror = () => {
       this.imageEl.src = 'https://via.placeholder.com/600x450.png?text=Image+Not+Found';
     };
 
-    this.audioEl.src = question.audio;
+    this.setupAudioSources(question.levels);
     this.updateProgress();
+  }
+
+  setupAudioSources(levelsData) {
+    this.audioLevelContainer.innerHTML = ''; 
+
+    if (levelsData && typeof levelsData === 'object') {
+      this.audioLevelContainer.style.display = 'flex';
+      const levels = Object.keys(levelsData);
+      
+      levels.forEach((levelStr, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'level-btn';
+        btn.textContent = levelStr.charAt(0).toUpperCase() + levelStr.slice(1); 
+        
+        if (levelStr === this.currentLevel || (index === 0 && !levels.includes(this.currentLevel))) {
+            this.currentLevel = levelStr;
+            this.audioEl.src = levelsData[levelStr].audio;
+            this.currentScript = levelsData[levelStr].script;
+            btn.classList.add('active');
+        }
+
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          this.currentLevel = levelStr;
+          this.audioEl.src = levelsData[levelStr].audio;
+          this.currentScript = levelsData[levelStr].script;
+          this.audioEl.play();
+
+          if (!this.feedbackSec.classList.contains('hidden')) {
+              this.renderChunks(this.currentScript);
+              this.setupShadowingScript();
+          }
+        });
+        this.audioLevelContainer.appendChild(btn);
+      });
+    } else {
+        this.audioLevelContainer.style.display = 'none';
+    }
   }
 
   handleAnswer(e) {
@@ -93,36 +167,42 @@ class LispeakApp {
 
     this.choiceBtns.forEach(btn => btn.disabled = true);
 
-    // 正誤のボタンハイライト表示
     if (isCorrect) {
+      this.correctSound.currentTime = 0; 
+      this.correctSound.play().catch(e => console.log("効果音再生エラー:", e));
       selectedBtn.style.backgroundColor = 'var(--correct-color)';
       selectedBtn.style.borderColor = 'var(--correct-color)';
     } else {
+      this.incorrectSound.currentTime = 0;
+      this.incorrectSound.play().catch(e => console.log("効果音再生エラー:", e));
       selectedBtn.style.backgroundColor = 'var(--incorrect-color)';
       selectedBtn.style.borderColor = 'var(--incorrect-color)';
+      
       const correctBtn = document.querySelector(`.choice-btn[data-choice="${question.answer}"]`);
       if(correctBtn) correctBtn.style.border = '4px solid var(--correct-color)';
     }
     selectedBtn.style.color = 'white';
 
-    // フィードバックテキストの設定
     this.resultTitle.textContent = isCorrect ? '🎉 正解！' : '❌ 不正解...';
     this.resultTitle.style.color = isCorrect ? 'var(--correct-color)' : 'var(--incorrect-color)';
     this.feedbackText.textContent = question.feedback[selectedChoice];
     
-    // チャンク表示とシャドーイングのセットアップ
     this.renderChunks(this.currentScript);
     this.setupShadowingScript();
 
+    // 2カラムレイアウトへの切り替えとフィードバック表示
+    this.appContainer.classList.add('show-feedback');
     this.feedbackSec.classList.remove('hidden');
-    this.feedbackSec.scrollIntoView({ behavior: 'smooth' });
+    
+    // モバイル端末向けに少しだけスクロール
+    if (window.innerWidth < 768) {
+        this.feedbackSec.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
-  // --- チャンクボタンの生成とTTS連携 ---
   renderChunks(scriptText) {
     const chunkContainer = document.getElementById('audio-script-chunks');
     chunkContainer.innerHTML = ''; 
-
     const chunks = scriptText.split('/').map(c => c.trim()).filter(c => c.length > 0);
 
     chunks.forEach(chunkText => {
@@ -133,17 +213,13 @@ class LispeakApp {
       btn.addEventListener('click', () => {
         TTSHandler.speak(chunkText);
       });
-      
       chunkContainer.appendChild(btn);
     });
   }
 
-  // --- シャドーイング機能のロジック ---
   setupShadowingScript() {
-    // チャンク用のスラッシュ(/)を消去してから、単語ごとにspanで囲む
     const cleanScript = this.currentScript.replace(/\//g, '');
     const words = cleanScript.trim().split(/\s+/);
-    
     this.shadowingScriptEl.innerHTML = words.map(word => `<span>${word}</span>`).join(' ');
   }
 
@@ -164,7 +240,6 @@ class LispeakApp {
     this.micBtn.classList.add('recording');
     this.micBtn.textContent = '⏹️ 停止する';
     
-    // 録音開始時に色をリセット
     this.shadowingScriptEl.querySelectorAll('span').forEach(span => {
       span.classList.remove('word-correct');
     });
@@ -185,7 +260,6 @@ class LispeakApp {
     const spans = this.shadowingScriptEl.querySelectorAll('span');
 
     spans.forEach(span => {
-      // 記号を消して小文字で比較（カンマやピリオドを無視して判定）
       const cleanWord = span.textContent.toLowerCase().replace(/[^a-z0-9]/g, '');
       if (spokenWords.includes(cleanWord)) {
         span.classList.add('word-correct');
@@ -207,8 +281,10 @@ class LispeakApp {
   }
 
   showFinishScreen() {
+    this.appContainer.classList.remove('show-feedback');
     this.imageEl.style.display = 'none';
     this.audioEl.style.display = 'none';
+    this.audioLevelContainer.style.display = 'none';
     document.getElementById('answer-section').style.display = 'none';
     
     this.resultTitle.textContent = '🎊 すべての問題をクリアしました！';

@@ -8,57 +8,72 @@
 </head>
 <body>
   <header>
-    <h1>Lispeak</h1>
-    <div id="progress">0 / 0</div>
+    <!-- ヘッダー用スモールロゴ -->
+    <img src="assets/images/logo.png" alt="Lispeak" class="header-logo" onerror="this.style.display='none'">
+    <div id="progress" class="hidden">0 / 0</div>
   </header>
 
-  <main id="app-container">
-    <!-- Visual Section -->
-    <section id="visual-section">
-      <img id="question-image" src="" alt="Question Image" />
-    </section>
-
-    <!-- Audio Section -->
-    <section id="audio-section">
-      <audio id="question-audio" controls></audio>
-    </section>
-
-    <!-- Answer Section -->
-    <section id="answer-section">
-      <div class="button-grid">
-        <button class="choice-btn" data-choice="1">①</button>
-        <button class="choice-btn" data-choice="2">②</button>
-        <button class="choice-btn" data-choice="3">③</button>
-        <button class="choice-btn" data-choice="4">④</button>
+  <main>
+    <!-- スタート画面 -->
+    <section id="home-screen">
+      <!-- メインロゴ -->
+      <img src="assets/images/logo.png" alt="Lispeak Logo" class="main-logo" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<h1>Lispeak</h1>');">
+      <h2>問題形式を選択してください</h2>
+      <div class="category-buttons">
+        <button class="category-btn" data-category="illustration">共通テスト イラスト問題</button>
+        <!-- 今後、他のカテゴリ（例：図表読み取りなど）を追加できます -->
       </div>
     </section>
 
-    <!-- Feedback Section (Hidden initially) -->
-    <section id="feedback-section" class="hidden">
-      <h2 id="result-title"></h2>
+    <!-- アプリメインコンテナ（初期は非表示） -->
+    <div id="app-container" class="hidden">
       
-      <!-- チャンク再生セクション -->
-      <div id="script-container">
-        <strong>Script (タップして再生):</strong>
-        <div id="audio-script-chunks" class="chunk-container"></div>
-      </div>
-      
-      <p id="feedback-text"></p>
+      <!-- 左カラム（問題・音声・選択肢） -->
+      <div class="left-column">
+        <section id="visual-section">
+          <img id="question-image" src="" alt="Question Image" />
+        </section>
 
-      <!-- 音読・シャドーイングセクション -->
-      <div id="shadowing-section">
-        <hr class="divider">
-        <h3>🎙️ 音読・シャドーイング</h3>
-        <p class="instruction">マイクボタンを押してスクリプトを音読してください。正しく発音できた単語が光ります。</p>
-        <div id="shadowing-script" class="shadowing-script"></div>
-        <button id="mic-btn" class="mic-btn">🎙️ 音読を始める</button>
+        <section id="audio-section">
+          <div id="audio-level-container" class="level-container"></div>
+          <audio id="question-audio" controls></audio>
+        </section>
+
+        <section id="answer-section">
+          <div class="button-grid">
+            <button class="choice-btn" data-choice="1">①</button>
+            <button class="choice-btn" data-choice="2">②</button>
+            <button class="choice-btn" data-choice="3">③</button>
+            <button class="choice-btn" data-choice="4">④</button>
+          </div>
+        </section>
       </div>
 
-      <button id="next-btn">次の問題へ</button>
-    </section>
+      <!-- 右カラム（フィードバック・シャドーイング） -->
+      <div class="right-column">
+        <section id="feedback-section" class="hidden">
+          <h2 id="result-title"></h2>
+          <div id="script-container">
+            <strong>Script (タップして再生):</strong>
+            <div id="audio-script-chunks" class="chunk-container"></div>
+          </div>
+          <p id="feedback-text"></p>
+
+          <div id="shadowing-section">
+            <hr class="divider">
+            <h3>🎙️ 音読・シャドーイング</h3>
+            <p class="instruction">マイクボタンを押してスクリプトを音読してください。正しく発音できた単語が光ります。</p>
+            <div id="shadowing-script" class="shadowing-script"></div>
+            <button id="mic-btn" class="mic-btn">🎙️ 音読を始める</button>
+          </div>
+
+          <button id="next-btn">次の問題へ</button>
+        </section>
+      </div>
+
+    </div>
   </main>
 
-  <!-- 外部スクリプトの読み込み（順番が重要です） -->
   <script src="js/dataLoader.js"></script>
   <script src="js/audio.js"></script>
   <script src="js/speech.js"></script>
