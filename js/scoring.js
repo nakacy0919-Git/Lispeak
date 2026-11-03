@@ -35,12 +35,28 @@ class SpeakingScorer {
         j++;
       }
     }
+    // Word error rate: insertions, omissions and substitutions all count.
+    const edits = Array.from({ length: n + 1 }, () => new Uint16Array(m + 1));
+    for (let row = 0; row <= n; row++) edits[row][0] = row;
+    for (let col = 0; col <= m; col++) edits[0][col] = col;
+    for (let row = 1; row <= n; row++) {
+      for (let col = 1; col <= m; col++) {
+        const substitution = expected[row - 1] === spoken[col - 1] ? 0 : 1;
+        edits[row][col] = Math.min(
+          edits[row - 1][col] + 1,
+          edits[row][col - 1] + 1,
+          edits[row - 1][col - 1] + substitution
+        );
+      }
+    }
     const correctWords = matchedIndices.length;
+    const wordErrors = edits[n][m];
     return {
       matchedIndices,
       correctWords,
       totalWords: n,
-      accuracy: n === 0 ? 0 : Math.round((correctWords / n) * 100)
+      wordErrors,
+      accuracy: n === 0 ? 0 : Math.max(0, Math.round((1 - wordErrors / n) * 100))
     };
   }
 }
