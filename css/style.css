@@ -261,3 +261,49 @@ main { flex: 1; width: 100%; padding: 20px; display: flex; justify-content: cent
   margin-top: 15px; font-weight: bold; width: 100%; box-shadow: 0 6px 16px rgba(94, 53, 177, 0.2); transition: all 0.3s;
 }
 #next-btn:hover { background-color: #4C2B91; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(94, 53, 177, 0.3); }
+
+/* High-priority reliability fixes (November 2026) */
+.practice-status {
+  margin: 10px 0;
+  padding: 10px 12px;
+  color: var(--text-main);
+  background: var(--primary-soft);
+  border-radius: 12px;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+.shadowing-headphone-note {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  text-align: center;
+  margin-top: 10px;
+}
+.finish-message {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  text-align: center;
+}
+#app-container.is-finished {
+  width: min(100%, 700px);
+  max-width: 700px;
+}
+#app-container.is-finished .right-column {
+  position: static;
+  width: 100%;
+}
+@media (min-width: 768px) and (max-width: 1100px) {
+  #app-container.show-feedback {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .feedback-header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  #result-title { font-size: 1.35rem; }
+  .tab-content { padding: 16px; }
+  .practice-script { padding: 12px; text-align: left; }
+  main { padding: 12px; }
+}
