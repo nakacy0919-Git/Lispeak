@@ -7,7 +7,12 @@ class LispeakApp {
     
     this.speechHandler = new SpeechHandler(); 
     this.currentScript = ""; 
-    this.currentLevel = "basic"; 
+    this.currentLevel = "basic";
+    this.isFinished = false;
+    this.correctAnswers = 0;
+    this.practiceEpoch = 0;
+    this.scoreAnimationTimeout = null;
+    this.scoreAnimationInterval = null; 
 
     this.correctSound = new Audio('assets/audio/correct.mp3');
     this.incorrectSound = new Audio('assets/audio/incorrect.mp3');
@@ -66,6 +71,12 @@ class LispeakApp {
     this.shadowingStopBtn = document.getElementById('shadowing-stop-btn');
     this.shadowingModelText = document.getElementById('shadowing-model-text');
     this.shadowingUserText = document.getElementById('shadowing-user-text');
+    this.readingStatus = document.getElementById('reading-status');
+    this.shadowingStatus = document.getElementById('shadowing-status');
+    this.finishMessage = document.getElementById('finish-message');
+    this.correctAnswerBlock = document.querySelector('.correct-answer-display');
+    this.scriptContainer = document.getElementById('script-container');
+    this.practiceSection = document.getElementById('practice-section');
     
     this.nextBtn = document.getElementById('next-btn');
     this.progressEl = document.getElementById('progress');
@@ -83,7 +94,11 @@ class LispeakApp {
 
     this.levelSelectBtns.forEach(btn => btn.addEventListener('click', (e) => this.startQuestionSet(e.target.dataset.level)));
     this.choiceBtns.forEach(btn => btn.addEventListener('click', (e) => this.handleAnswer(e)));
-    this.nextBtn.addEventListener('click', () => { this.stopAllAudioAndMic(); this.nextQuestion(); });
+    this.nextBtn.addEventListener('click', () => {
+      this.stopAllAudioAndMic();
+      if (this.isFinished) this.showVisualList();
+      else this.nextQuestion();
+    });
     
     this.toggleExplanationBtn.addEventListener('click', () => {
       this.explanationWrapper.classList.toggle('hidden');
@@ -116,11 +131,14 @@ class LispeakApp {
   }
 
   showHomeScreen() {
+    this.stopAllAudioAndMic();
     this.visualListScreen.classList.add('hidden');
     this.homeScreen.classList.remove('hidden');
   }
 
   showVisualList() {
+    this.stopAllAudioAndMic();
+    this.isFinished = false;
     this.homeScreen.classList.add('hidden');
     this.levelSelectScreen.classList.add('hidden');
     this.appContainer.classList.add('hidden');
@@ -172,6 +190,8 @@ class LispeakApp {
 
   startQuestionSet(level) {
     this.currentLevel = level;
+    this.isFinished = false;
+    this.correctAnswers = 0;
     this.levelSelectScreen.classList.add('hidden');
     this.appContainer.classList.remove('hidden');
     this.progressHeader.classList.remove('hidden');
@@ -200,8 +220,12 @@ class LispeakApp {
   // --- Audio Player Logic ---
   toggleAudio() {
     if (this.audioEl.paused) {
-      this.audioEl.play();
-      this.playPauseBtn.textContent = '⏸';
+      this.audioEl.play().then(() => {
+        this.playPauseBtn.textContent = '⏸';
+      }).catch(() => {
+        this.playPauseBtn.textContent = '▶';
+        this.audioTimeDisplay.textContent = '音声を再生できません';
+      });
     } else {
       this.audioEl.pause();
       this.playPauseBtn.textContent = '▶';
@@ -240,6 +264,18 @@ class LispeakApp {
   }
 
   loadCurrentQuestion() {
+    this.isFinished = false;
+    this.appContainer.classList.remove('is-finished');
+    this.finishMessage.classList.add('hidden');
+    this.correctAnswerBlock.classList.remove('hidden');
+    this.scriptContainer.classList.remove('hidden');
+    this.toggleExplanationBtn.classList.remove('hidden');
+    this.practiceSection.classList.remove('hidden');
+    this.nextBtn.textContent = '次の問題へ';
+    this.readingMicBtn.textContent = '🎙️ 音読を始める';
+    this.shadowingStartBtn.textContent = '▶️ モデル音声 ＋ 録音スタート';
+    this.setPracticeStatus('reading', '');
+    this.setPracticeStatus('shadowing', '');
     const question = this.playQueue[this.currentIndex];
     const levelData = question.levels[this.currentLevel] || question.levels['basic'];
     this.currentScript = levelData.script;
@@ -273,6 +309,7 @@ class LispeakApp {
     const question = this.playQueue[this.currentIndex];
     const levelData = question.levels[this.currentLevel] || question.levels['basic'];
     const isCorrect = selectedChoice === question.answer;
+    if (isCorrect) this.correctAnswers++;
 
     this.choiceBtns.forEach(btn => btn.disabled = true);
 
@@ -303,7 +340,14 @@ class LispeakApp {
     this.feedbackText.textContent = question.feedback[selectedChoice] || "";
 
     if (levelData.vocabulary && levelData.vocabulary.length > 0) {
-      this.vocabularyList.innerHTML = levelData.vocabulary.map(v => `<li><strong>${v.word}</strong> : ${v.meaning}</li>`).join('');
+      const entries = levelData.vocabulary.map(v => {
+        const item = document.createElement('li');
+        const term = document.createElement('strong');
+        term.textContent = v.word;
+        item.append(term, document.createTextNode(' : ' + v.meaning));
+        return item;
+      });
+      this.vocabularyList.replaceChildren(...entries);
       this.vocabularyContainer.classList.remove('hidden');
     } else {
       this.vocabularyContainer.classList.add('hidden');
