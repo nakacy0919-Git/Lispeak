@@ -381,13 +381,14 @@ class LispeakApp {
 
   setupReadingScript() {
     const fragments = this.currentScript.split(/([A-Za-z0-9]+(?:['’][A-Za-z0-9]+)*)/g);
-    this.readingScriptEl.replaceChildren(...fragments.filter(Boolean).map((part, index) => {
+    this.readingScriptEl.replaceChildren(...fragments.flatMap((part, index) => {
+      if (!part) return [];
       if (index % 2 === 1) {
         const span = document.createElement('span');
         span.textContent = part;
-        return span;
+        return [span];
       }
-      return document.createTextNode(part);
+      return [document.createTextNode(part)];
     }));
   }
 
