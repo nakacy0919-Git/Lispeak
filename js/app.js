@@ -587,22 +587,25 @@ class LispeakApp {
   updateProgress() { this.progressEl.textContent = `Q ${this.currentIndex + 1} / ${this.playQueue.length}`; }
 
   showFinishScreen() {
+    this.isFinished = true;
+    this.stopAllAudioAndMic();
     this.appContainer.classList.remove('show-feedback');
+    this.appContainer.classList.add('is-finished');
     document.getElementById('visual-section').style.display = 'none';
     document.getElementById('audio-section').style.display = 'none';
     document.getElementById('answer-section').style.display = 'none';
-    
+
     this.resultTitle.textContent = '🎊 この問題セットをクリアしました！';
     this.resultTitle.style.color = 'var(--primary-color)';
-    this.feedbackText.textContent = '素晴らしい集中力です！一覧から次の問題を選んでください。';
-    
+    this.finishMessage.textContent = `リスニング正答数: ${this.correctAnswers} / ${this.playQueue.length} 問。お疲れさまでした！`;
+    this.finishMessage.classList.remove('hidden');
+    this.correctAnswerBlock.classList.add('hidden');
+    this.scriptContainer.classList.add('hidden');
+    this.toggleExplanationBtn.classList.add('hidden');
+    this.explanationWrapper.classList.add('hidden');
+    this.practiceSection.classList.add('hidden');
     this.feedbackSec.classList.remove('hidden');
-    
     this.nextBtn.textContent = '🔙 問題一覧に戻る';
-    this.nextBtn.onclick = () => {
-      this.feedbackSec.classList.add('hidden');
-      this.showVisualList();
-    };
   }
 }
 
