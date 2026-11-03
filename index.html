@@ -81,7 +81,8 @@
              <div class="correct-answer-display">正解: <span id="correct-number"></span></div>
           </div>
           
-          <div id="script-container" class="feedback-box">
+          <p id="finish-message" class="finish-message hidden"></p>
+           <div id="script-container" class="feedback-box">
             <h4>📜 スクリプト</h4>
             <p id="script-text"></p>
             <!-- 和訳表示エリア -->
@@ -111,6 +112,7 @@
             <div class="tab-content" id="tab-reading">
                <p class="instruction">マイクボタンを押し、スクリプトを音読してください。終了後、スコアが表示されます。</p>
                <div id="reading-script" class="practice-script"></div>
+                <p id="reading-status" class="practice-status hidden" role="status"></p>
                
                <div id="score-container" class="hidden">
                  <div class="gauge-wrapper">
@@ -134,7 +136,9 @@
                  <button id="shadowing-start-btn" class="action-btn">▶️ モデル音声 ＋ 録音スタート</button>
                  <button id="shadowing-stop-btn" class="action-btn stop-btn hidden">⏹️ 停止</button>
                </div>
-               <div class="shadowing-display">
+               <p id="shadowing-status" class="practice-status hidden" role="status"></p>
+                <p class="shadowing-headphone-note">音声の混入を防ぐためイヤホンの使用を推奨します。</p>
+                <div class="shadowing-display">
                  <strong>モデル:</strong>
                  <p id="shadowing-model-text" class="model-text"></p>
                  <strong>あなた:</strong>
@@ -151,6 +155,7 @@
 
   <script src="js/dataLoader.js"></script>
   <script src="js/speech.js"></script>
+  <script src="js/scoring.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
