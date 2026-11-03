@@ -380,62 +380,120 @@ class LispeakApp {
   }
 
   setupReadingScript() {
-    const cleanScript = this.currentScript.replace(/\//g, '');
-    const words = cleanScript.trim().split(/\s+/);
-    this.readingScriptEl.innerHTML = words.map(word => `<span>${word}</span>`).join(' ');
+    const fragments = this.currentScript.split(/([A-Za-z0-9]+(?:['’][A-Za-z0-9]+)*)/g);
+    this.readingScriptEl.replaceChildren(...fragments.filter(Boolean).map((part, index) => {
+      if (index % 2 === 1) {
+        const span = document.createElement('span');
+        span.textContent = part;
+        return span;
+      }
+      return document.createTextNode(part);
+    }));
+  }
+
+  setPracticeStatus(mode, message) {
+    const el = mode === 'reading' ? this.readingStatus : this.shadowingStatus;
+    el.textContent = message;
+    el.classList.toggle('hidden', !message);
+  }
+
+  showSpeechError(mode, error) {
+    const messages = {
+      'not-allowed': 'マイクを許可してください。ブラウザのマイク設定を確認してください。',
+      'service-not-allowed': '音声認識が許可されていません。',
+      'audio-capture': 'マイクが見つかりません。端末設定を確認してください。',
+      'no-speech': '音声を認識できませんでした。再度お試しください。',
+      'network': '音声認識サービスに接続できません。通信状態を確認してください。',
+      'unsupported': '音声認識に対応したブラウザで開いてください。',
+      'audio-failed': 'モデル音声を再生できません。'
+    };
+    this.setPracticeStatus(mode, messages[error] || '音声認識を開始できません。もう一度お試しください。');
+  }
+
+  onRecognitionEnd(mode, state) {
+    if (!state.unexpected) return;
+    if (!state.error) this.setPracticeStatus(mode, '音声認識が終了しました。もう一度お試しください。');
+    if (mode === 'reading') {
+      this.readingStopBtn.classList.add('hidden');
+      this.readingStopBtn.classList.remove('recording');
+      this.readingMicBtn.classList.remove('hidden');
+    } else {
+      this.audioEl.pause();
+      this.audioEl.onended = null;
+      this.shadowingStopBtn.classList.add('hidden');
+      this.shadowingStopBtn.classList.remove('recording');
+      this.shadowingStartBtn.classList.remove('hidden');
+    }
+  }
+
+  renderReadingMatches(transcript) {
+    const score = SpeakingScorer.compare(this.currentScript, transcript);
+    const matched = new Set(score.matchedIndices);
+    this.readingScriptEl.querySelectorAll('span').forEach((span, index) => {
+      span.classList.toggle('word-correct', matched.has(index));
+    });
+    return score;
   }
 
   startReadingPractice() {
-    if (!this.speechHandler.recognition) return alert("マイク対応ブラウザをご利用ください。");
-    
-    this.scoreContainer.classList.add('hidden'); 
+    if (!this.speechHandler.recognition) return this.showSpeechError('reading', 'unsupported');
+    this.practiceEpoch++;
+    this.clearScoreAnimation();
+    this.scoreContainer.classList.add('hidden');
+    this.accuracyGauge.style.strokeDashoffset = '125.6';
     this.readingScriptEl.querySelectorAll('span').forEach(span => span.classList.remove('word-correct'));
-    
+    this.setPracticeStatus('reading', '');
+    const started = this.speechHandler.start(
+      transcript => this.renderReadingMatches(transcript),
+      error => this.showSpeechError('reading', error),
+      state => this.onRecognitionEnd('reading', state)
+    );
+    if (!started) {
+      if (!this.readingStatus.textContent) this.showSpeechError('reading', 'start-failed');
+      return;
+    }
     this.readingMicBtn.classList.add('hidden');
     this.readingStopBtn.classList.remove('hidden');
     this.readingStopBtn.classList.add('recording');
-
-    this.speechHandler.start((transcript) => {
-      const spokenWords = transcript.toLowerCase().match(/\b\w+\b/g) || [];
-      this.readingScriptEl.querySelectorAll('span').forEach(span => {
-        const cleanWord = span.textContent.toLowerCase().replace(/[^a-z0-9]/g, '');
-        if (spokenWords.includes(cleanWord)) span.classList.add('word-correct');
-      });
-    });
   }
 
-  stopReadingAndCalculateScore() {
-    this.speechHandler.stop();
+  async stopReadingAndCalculateScore() {
+    const epoch = this.practiceEpoch;
+    this.readingStopBtn.disabled = true;
+    const transcript = await this.speechHandler.stop();
+    if (epoch !== this.practiceEpoch) return;
+    this.readingStopBtn.disabled = false;
     this.readingStopBtn.classList.remove('recording');
     this.readingStopBtn.classList.add('hidden');
     this.readingMicBtn.classList.remove('hidden');
     this.readingMicBtn.textContent = '🔄 もう一度音読する';
+    const score = this.renderReadingMatches(transcript);
+    this.setPracticeStatus('reading', '単語認識の一致率です。発音の品質自体は測定していません。');
+    this.animateAccuracy(score.accuracy);
+  }
 
-    const spans = this.readingScriptEl.querySelectorAll('span');
-    const totalWords = spans.length;
-    let correctWords = 0;
-    spans.forEach(span => { if(span.classList.contains('word-correct')) correctWords++; });
-    
-    const accuracy = Math.round((correctWords / totalWords) * 100) || 0;
-    
+  clearScoreAnimation() {
+    if (this.scoreAnimationTimeout !== null) clearTimeout(this.scoreAnimationTimeout);
+    if (this.scoreAnimationInterval !== null) clearInterval(this.scoreAnimationInterval);
+    this.scoreAnimationTimeout = null;
+    this.scoreAnimationInterval = null;
+  }
+
+  animateAccuracy(accuracy) {
+    this.clearScoreAnimation();
     this.scoreContainer.classList.remove('hidden');
-    this.accuracyScore.textContent = "0";
-    
-    const offset = 125.6 - (125.6 * accuracy / 100);
-    
-    setTimeout(() => {
-      this.accuracyGauge.style.strokeDashoffset = offset;
-      
-      let currentNum = 0;
-      const interval = setInterval(() => {
-        currentNum += 2;
-        if(currentNum >= accuracy) {
-          currentNum = accuracy;
-          clearInterval(interval);
-          this.accuracyScore.textContent = currentNum;
+    this.accuracyScore.textContent = '0';
+    this.accuracyGauge.style.strokeDashoffset = '125.6';
+    const offset = 125.6 * (1 - accuracy / 100);
+    this.scoreAnimationTimeout = setTimeout(() => {
+      this.accuracyGauge.style.strokeDashoffset = String(offset);
+      let value = 0;
+      this.scoreAnimationInterval = setInterval(() => {
+        value = Math.min(accuracy, value + 2);
+        this.accuracyScore.textContent = String(value);
+        if (value >= accuracy) {
+          this.clearScoreAnimation();
           if (accuracy >= 80) this.triggerCelebration();
-        } else {
-          this.accuracyScore.textContent = currentNum;
         }
       }, 20);
     }, 100);
