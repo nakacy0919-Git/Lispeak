@@ -510,40 +510,63 @@ class LispeakApp {
   }
 
   startShadowingPractice() {
-    if (!this.speechHandler.recognition) return alert("マイク対応ブラウザをご利用ください。");
-    
-    this.shadowingUserText.textContent = "録音中...";
+    if (!this.speechHandler.recognition) return this.showSpeechError('shadowing', 'unsupported');
+    this.practiceEpoch++;
+    this.setPracticeStatus('shadowing', '');
+    this.shadowingUserText.textContent = '録音中...';
+    const started = this.speechHandler.start(
+      transcript => { this.shadowingUserText.textContent = transcript || '録音中...'; },
+      error => this.showSpeechError('shadowing', error),
+      state => this.onRecognitionEnd('shadowing', state)
+    );
+    if (!started) {
+      if (!this.shadowingStatus.textContent) this.showSpeechError('shadowing', 'start-failed');
+      return;
+    }
     this.shadowingStartBtn.classList.add('hidden');
     this.shadowingStopBtn.classList.remove('hidden');
     this.shadowingStopBtn.classList.add('recording');
-
     this.audioEl.currentTime = 0;
-    this.audioEl.play();
-    this.playPauseBtn.textContent = '⏸'; // プレイヤーアイコンも連動
-
-    this.speechHandler.start((transcript) => {
-      this.shadowingUserText.textContent = transcript || "聞き取れませんでした...";
-    });
-
     this.audioEl.onended = () => {
-        if(this.speechHandler.isRecording) this.stopShadowingPractice();
+      if (this.speechHandler.isRecording) this.stopShadowingPractice();
     };
+    this.audioEl.play().then(() => {
+      this.playPauseBtn.textContent = '⏸';
+    }).catch(() => {
+      this.speechHandler.abort();
+      this.audioEl.onended = null;
+      this.shadowingStopBtn.classList.add('hidden');
+      this.shadowingStopBtn.classList.remove('recording');
+      this.shadowingStartBtn.classList.remove('hidden');
+      this.showSpeechError('shadowing', 'audio-failed');
+    });
   }
 
-  stopShadowingPractice() {
-    this.speechHandler.stop();
+  async stopShadowingPractice() {
+    const epoch = this.practiceEpoch;
+    this.shadowingStopBtn.disabled = true;
+    const transcript = await this.speechHandler.stop();
+    if (epoch !== this.practiceEpoch) return;
+    this.shadowingStopBtn.disabled = false;
     this.audioEl.pause();
+    this.audioEl.onended = null;
     this.playPauseBtn.textContent = '▶';
     this.shadowingStopBtn.classList.remove('recording');
     this.shadowingStopBtn.classList.add('hidden');
     this.shadowingStartBtn.classList.remove('hidden');
     this.shadowingStartBtn.textContent = '🔄 もう一度Shadowing';
+    this.shadowingUserText.textContent = transcript || '音声を認識できませんでした。';
   }
 
   stopAllAudioAndMic() {
-    this.speechHandler.stop();
+    this.practiceEpoch++;
+    this.clearScoreAnimation();
+    this.speechHandler.abort();
     this.audioEl.pause();
+    this.audioEl.onended = null;
     this.playPauseBtn.textContent = '▶';
+    this.readingStopBtn.disabled = false;
+    this.shadowingStopBtn.disabled = false;
     this.readingStopBtn.classList.add('hidden');
     this.readingStopBtn.classList.remove('recording');
     this.readingMicBtn.classList.remove('hidden');
