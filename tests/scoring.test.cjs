@@ -20,6 +20,9 @@ test('empty reading is zero', () => {
 test('contractions and punctuation normalize', () => {
   assert.equal(SpeakingScorer.compare("I can't believe it.", 'I can’t believe it').accuracy, 100);
 });
-test('extra recognized words do not inflate score above 100', () => {
-  assert.equal(SpeakingScorer.compare('I see it', 'I see it and more words').accuracy, 100);
+test('inserted words lower the score rather than inflating it', () => {
+  assert.equal(SpeakingScorer.compare('I see it', 'I see it now').accuracy, 67);
+});
+test('substituted words lower the score', () => {
+  assert.equal(SpeakingScorer.compare('the cat runs', 'the dog runs').accuracy, 67);
 });
