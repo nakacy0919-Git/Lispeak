@@ -421,6 +421,7 @@ class LispeakApp {
     } else {
       this.audioEl.pause();
       this.audioEl.onended = null;
+      this.playPauseBtn.textContent = '▶';
       this.shadowingStopBtn.classList.add('hidden');
       this.shadowingStopBtn.classList.remove('recording');
       this.shadowingStartBtn.classList.remove('hidden');
@@ -468,6 +469,10 @@ class LispeakApp {
     this.readingStopBtn.classList.add('hidden');
     this.readingMicBtn.classList.remove('hidden');
     this.readingMicBtn.textContent = '🔄 もう一度音読する';
+    if (this.speechHandler.lastError) {
+      this.showSpeechError('reading', this.speechHandler.lastError);
+      return;
+    }
     const score = this.renderReadingMatches(transcript);
     this.setPracticeStatus('reading', '単語認識の一致率です。発音の品質自体は測定していません。');
     this.animateAccuracy(score.accuracy);
